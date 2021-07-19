@@ -64,7 +64,7 @@ a, span, p, div{
     margin-left: 20px;
 }
 
-.cat_menu_container ul {
+.cat_menu_container  ul {
     display: block;
     position: absolute;
     top: 100%;
@@ -79,8 +79,9 @@ a, span, p, div{
     transition: all .3s ease;
 }
 
-.cat_menu_container>ul {
+.cat_menu_container > ul {
     padding-top: 13px;
+    padding-left: 0px;
     display: none;
 }
 
@@ -188,22 +189,21 @@ a, span, p, div{
 
 .cat_menu li {
     display: block;
-    position: relative;
+    // position: relative;
     width: auto;
     height: 46px;
     border-bottom: solid 1px #f2f2f2;
-    padding-left: 35px;
-    padding-right: 30px;
+    padding: 0px 30px 50px 35px;
     white-space: nowrap;
 }
 
 .cat_menu li ul {
     display: block;
-    position: absolute;
-    top: 35px;
-    left: 100%;
-    visibility: hidden;
-    opacity: 0;
+    // position: absolute;
+    // top: 35px;
+    // left: 100%;
+    // visibility: hidden;
+    // opacity: 0;
     width: 100%;
     background: #fff;
     box-shadow: 0 10px 25px rgb(0 0 0 / 10%);

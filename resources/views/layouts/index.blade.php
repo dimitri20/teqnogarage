@@ -156,40 +156,35 @@
                             <div class="cat_menu_container">
                                 <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                                     <svg style="fill:#fff;" xmlns="http://www.w3.org/2000/svg" height="20pt" viewBox="0 -53 384 384" width="20pt"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
-                                    <div class="cat_menu_text">categories</div>
+                                    <div class="cat_menu_text">კატეგორიები</div>
                                 </div>
                                 
                                 <ul 
                                     class="cat_menu" 
-                                    @if (Request::is('/'))
-                                        style="display:block";
+                                    @if (request()->is("/"))
+                                        style="display:block;"
                                     @endif >
 
-                                    <li><a href="#">Computers &amp; Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                                    <li><a href="#">Cameras &amp; Photos<i class="fas fa-chevron-right"></i></a></li>
                                     <li class="hassubs">
-                                       <a href="#">Hardware<i class="fas fa-chevron-right">></i></a>
-                                       <ul>
-                                          <li class="hassubs">
-                                             <a href="#">Menu Item</a>
-                                             <ul>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                             </ul>
-                                          </li>
-                                          <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                          <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                          <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                       </ul>
+                                        <a href="#"> ტელეფონები <i class="fas fa-chevron-right ml-auto"></i></a>
+                                        
+                                        <ul>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                        </ul>
                                     </li>
-                                    <li><a href="#">Smartphones &amp; Tablets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">TV &amp; Audio<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Video Games &amp; Consoles<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+
+
+                                    <li><a href="#">პლანშეტები<i class="fas fa-chevron-right"></i></a></li>
+
+                                    <li>
+                                       <a href="#">ლეპტოპები<i class="fas fa-chevron-right">></i></a>
+                                    </li>
+
+                                    <li><a href="#">კომპიუტერები<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="#">აქსესუარები<i class="fas fa-chevron-right"></i></a></li>
+                                    
                                 </ul>
                             </div>
                             
@@ -197,17 +192,17 @@
                                 <ul class="standard_dropdown main_nav_dropdown">
                                     <li>
                                         <a href="{{ asset('/') }}">
-                                            Home
+                                            მთავარი
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ asset('/contact') }}">
-                                            Contact
+                                            კონტაქტი
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#">
-                                            About
+                                            ჩვენ შესახებ
                                         </a>
                                     </li>
                                 </ul>
