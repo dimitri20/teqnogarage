@@ -4,219 +4,330 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TEQNO GARAGE</title>
 
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('css/sapp.css') }}">
-    <link rel="shortcut icon" href="/images/title-logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/sapp1.css') }}">
+    
+    <title>Document</title>
 </head>
 <body>
+    
+    <header>
 
-    <header class="header">
+        <div id="top-nav-container">
+            <div class="container-main">
+                <div id="top-nav-inner-container">
+                    <div class="row">
+                        <div class="col d-flex flex-row">
+                            <div class="top-nav-contents-container d-flex flex-row">
+                                <div class="top-nav-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset('storage/icons/facebook.svg') }}" alt="">
+                                    </a>
+                                </div>
 
-        <div class="top_bar">
-            <div class="container container-maxw">
-                <div class="row">
-                    <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/phone.png') }}" alt="">
+                                <div class="top-nav-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset('storage/icons/instagram.svg') }}" alt="">
+                                    </a>
                                 </div>
-                                +995 555 555 555
-                            </a>
-                        </div>
-    
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/mail.png') }}" alt="">
+
+                                <div class="top-nav-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset('storage/icons/gmail.svg') }}" alt="">
+                                    </a>
                                 </div>
-                                example@gmail.com
-                            </a>
-                        </div>
-    
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/facebook.png') }}" alt="">
+
+                                <div class="top-nav-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset('storage/icons/whatsapp.svg') }}" alt="">
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
     
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/whatsapp.png') }}" alt="">
+                            <div class="top-nav-contents-container d-flex flex-row ms-auto">
+                                <div class="top-nav-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset('storage/icons/telephone.svg') }}" alt="">
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-    
-                        <div class="top_bar_content ms-auto">
-                            <div class="top_bar_menu">
-                                <ul class="standard_dropdown top_bar_dropdown">
-                                    <li class="hassubs">
-                                        <a href="#">
-                                            English
-                                        </a>
+
+                                <div class="top-nav-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset('storage/icons/google-maps.svg') }}" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="top-nav-content-item">
+                                    <div class="sl-nav">
                                         <ul>
-                                            <li>Georgian</li>
+                                          <li>
+                                            <i class="sl-flag flag-de"><div id="germany"></div></i> <span class="active">KA</span>
+                                            <div class="triangle"></div>
+                                            <ul>
+                                              <li><i class="sl-flag flag-de"><div id="germany"></div></i> <span class="active">EN</span></li>
+                                              <li><i class="sl-flag flag-usa"><div id="germany"></div></i> <span>RU</span></li>
+                                            </ul>
+                                          </li>
                                         </ul>
-                                    </li>
+                                      </div>
+                                </div>
 
-                                    <li class="hassubs">
-                                        <a href="#">
-                                            $ US dollar
-                                        </a>
-                                        <ul>
-                                            <li><a href="#">GEO Lari</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
-    
-                    
                 </div>
             </div>
         </div>
-    
-        <div class="middle-bar">
-            <div class="container container-maxw">
-                <div class="row">
-                    
-                    <div class="col p-4">
 
-                        {{-- <style>
-                            #logo {
-                                margin-left: -15px;
-                            }
-                            #logo img {
-                                height: 70px;
-                            }
-                        </style> --}}
+        <div id="middle-nav-container">
+            <div class="container-main">
+                <div id="middle-nav-inner-container">
+                    <div class="row">
 
-                        <div class="d-flex justify-content-start">
-                            <div id="logo">
-                                <a href="{{ asset('/') }}">
-                                    <img src="{{ asset('images/main-logo.png') }}" alt="">
-                                </a>
+                        <div class="col p-4">
+                            <div class="d-flex justify-content-start">
+                                <div id="logo">
+                                    <a href="{{ asset('/') }}">
+                                        <img src="{{ asset('images/main-logo.png') }}" alt="">
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-    
-                    <div class="col-md-6">
-                        {{-- <div class="d-flex justify-content-center">
-                            <div id="logo">
-                                <a href="{{ asset('/') }}">
-                                    <img src="{{ asset('images/main-logo.png') }}" alt="">
-                                </a>
-                            </div>
-                        </div> --}}
-                    </div>
-    
-                    <div class="col p-4">
-                        <div class="cart">
-                            
-                            <div class="d-flex flex-row justify-content-end align-middle">
-                                <div class="cart_icon">
-                                    <img src="{{ asset('images/cart.webp') }}" alt="">
-                                    <div class="cart_count">
-                                        <span>10</span>
-                                    </div>
-                                </div>
-    
-                                <div class="cart_content">
-                                    <div class="cart_text">
-                                        <a href="#">Cart</a>
-                                    </div>
-    
-                                    <div class="cart_price">$85</div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        
-                    </div>
-    
-                </div>
-            </div>
-        </div>
-    
-        <nav class="main_nav">
-            <div class="container container-maxw">
-                <div class="row">
-                    <div class="col">
-                        <div class="main_nav_content d-flex flex-row">
-                        
-                            <div class="cat_menu_container">
-                                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-                                    <svg style="fill:#fff;" xmlns="http://www.w3.org/2000/svg" height="20pt" viewBox="0 -53 384 384" width="20pt"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
-                                    <div class="cat_menu_text">კატეგორიები</div>
-                                </div>
+
+                
+                        <div class="col p-4">
+                            <div class="cart">
                                 
-                                <ul 
-                                    class="cat_menu" 
-                                    @if (request()->is("/"))
-                                        style="display:block;"
-                                    @endif >
+                                <div class="d-flex flex-row justify-content-end align-middle">
+                                    <div class="cart_icon">
+                                        <img src="{{ asset('images/cart.webp') }}" alt="">
+                                        <div class="cart_count">
+                                            <span>10</span>
+                                        </div>
+                                    </div>
+        
+                                    <div class="cart_content">
+                                        <div class="cart_text">
+                                            <a href="#">Cart</a>
+                                        </div>
+        
+                                        <div class="cart_price">$85</div>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
 
-                                    <li class="hassubs">
-                                        <a href="#"> ტელეფონები <i class="fas fa-chevron-right ml-auto"></i></a>
-                                        
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    
+        <div id="main-nav-container">
+            <nav id="main-nav" class="container-main h-100">
+                <div class="row h-100">
+                    <div class="col h-100">
+
+                        <div class="main-nav-content container-main-navbar-grid h-100">
+                            <div class="cat-menu-container">
+                                <div class="cat-menu-title d-flex flex-row align-items-center justify-content-start">
+                                    <svg style="fill:#fff;" xmlns="http://www.w3.org/2000/svg" height="20pt" viewBox="0 -53 384 384" width="20pt"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
+                                    <div class="cat-menu-text">კატეგორიები</div>
+                                </div>
+                            </div>
+
+                            <div id="banner-and-main-nav-container" class="flex-fill ms-auto">
+                                <div class="main-nav-menu h-100">
+                                    <ul class="d-flex flex-row h-100">
+                                        <li class="main-nav-menu-item active-page"><a href="#">მთავარი</a></li>
+                                        <li class="main-nav-menu-item"><a href="{{route("contact")}}">კონტაქტი</a></li>
+                                        <li class="main-nav-menu-item"><a href="#">ჩვენ შესახებ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+
+        <div id="banner-and-cat-container">
+            <div class="container-main h-100">
+                <div class="row h-100">
+                    <div class="col h-100">
+                        <div class="container-main-banner-and-cat-grid">
+                            <nav class="cat-menu">
+                                <ul class="h-100 w-100 p-0">
+                                    <li class="cat-menu-item active-sub">
+                                        <a href="#">
+                                            ტელეფონები
+                                        </a>
+    
+                                        <ul class="cat-menu-sub">
+                                            <li>
+                                                <a href="#">
+                                                    android
+                                                </a>
+                                            </li>
+    
+                                            <li>
+                                                <a href="#">
+                                                    android
+                                                </a>
+                                            </li>
+    
+                                            <li>
+                                                <a href="#">
+                                                    android
+                                                </a>
+                                            </li>
+    
+                                            <li>
+                                                <a href="#">
+                                                    android
+                                                </a>
+                                            </li>
+    
+                                            <li>
+                                                <a href="#">
+                                                    android
+                                                </a>
+                                            </li>
+    
+                                            <li>
+                                                <a href="#">
+                                                    iphone
+                                                </a>
+                                            </li>
+    
+                                            <li>
+                                                <a href="#">
+                                                    xiaomi
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
-
-
-                                    <li><a href="#">პლანშეტები<i class="fas fa-chevron-right"></i></a></li>
-
-                                    <li>
-                                       <a href="#">ლეპტოპები<i class="fas fa-chevron-right">></i></a>
+    
+                                    <li class="cat-menu-item">
+                                        <a href="#">
+                                            ტელეფონები
+                                        </a>
+    
                                     </li>
-
-                                    <li><a href="#">კომპიუტერები<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">აქსესუარები<i class="fas fa-chevron-right"></i></a></li>
+    
+                                    <li class="cat-menu-item">
+                                        <a href="#">
+                                            ტელეფონები
+                                        </a>
+                                    </li>
+    
+                                    <li class="cat-menu-item">
+                                        <a href="#">
+                                            ტელეფონები
+                                        </a>
+                                    </li>
                                     
                                 </ul>
-                            </div>
+                            </nav>
                             
-                            <div class="main_nav_menu ms-auto">
-                                <ul class="standard_dropdown main_nav_dropdown">
-                                    <li>
-                                        <a href="{{ asset('/') }}">
-                                            მთავარი
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ asset('/contact') }}">
-                                            კონტაქტი
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            ჩვენ შესახებ
-                                        </a>
-                                    </li>
-                                </ul>
+
+                            <div id="main-banner-container">
+                                <div id="carouselExampleIndicators" class="carousel slide h-100" data-bs-ride="carousel">
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#main-banner-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#main-banner-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#main-banner-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    </div>
+
+                                    <div class="carousel-inner h-100">
+
+                                        <div class="carousel-item h-100 w-100 active">
+                                        <img src="{{asset("images/banner.png")}}" class="d-block" alt="...">
+                                        </div>
+
+                                        <div class="carousel-item h-100 w-100">
+                                        <img src="{{asset("images/banner.png")}}" class="d-block" alt="...">
+                                        </div>
+
+                                        <div class="carousel-item h-100 w-100">
+                                        <img src="{{asset("images/banner.png")}}" class="d-block" alt="...">
+                                        </div>
+
+                                    </div>
+
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#main-banner-carousel" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+
+                                    <button class="carousel-control-next" type="button" data-bs-target="#main-banner-carousel" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                    </div>
                             </div>
-                        
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    
-    @yield('content')
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        
+    </header>
+
+    
+
+    @yield("content")
+
+
+    <footer id="footer">
+        <div class="container-main">
+            <div id="footer-inner-container">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex flex-row">
+                            <div class="footer-contents-container d-flex flex-row">
+                                <div class="footer-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset("storage/icons/google-maps.svg") }}" alt="">
+                                    </a>
+
+                                    <a href="#">
+                                        მისამართი N2 ქუჩა 2912
+                                    </a>
+                                </div>
+
+                                <div class="footer-content-item">
+                                    <a href="#">
+                                        <img src="{{ asset("storage/icons/telephone.svg") }}" alt="">
+                                    </a>
+
+                                    <a href="#">
+                                        +995 555 555 555
+                                    </a>
+                                </div>
+                            </div>
+    
+                            <div class="ms-auto">
+                                <div class="footer-content-item">
+                                    <a href="#">
+                                        &#169; ყველა უფლება დაცულია
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

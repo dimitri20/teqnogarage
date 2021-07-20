@@ -16,9 +16,14 @@ $text-main-font: 'Rubik';
 
 $main-color-green: #5dba23;
 $main-color-orange: #ff7f50;
+$main-color-white: #FFF;
+$main-color-black: #000;
+
 $top-navbar-backround: #FAFAFA;
 $main-nav-background: #FFF;
 $footer-background: #3B3B3B;
+
+
 
 $font-size-normal: 18px;
 $font-size-smaller: 15px;
@@ -29,6 +34,8 @@ $top-nav-height: 60px;
 
 $footer-margin-top: 200px;
 
+$main-navbar-and-banner-alignment-col: 340px auto;
+
 //variables
 
 
@@ -37,6 +44,18 @@ $footer-margin-top: 200px;
 .container-main{
   width: 95%;
   margin: 0 auto;
+}
+
+.container-main-navbar-grid{
+  display: grid;
+  grid-template-columns: $main-navbar-and-banner-alignment-col;
+  grid-auto-rows: $top-nav-height;
+}
+
+.container-main-banner-and-cat-grid{
+  display: grid;
+  grid-template-columns: $main-navbar-and-banner-alignment-col;
+  grid-auto-rows: minmax($banner-height, auto);
 }
 
 a, a:hover, a:visited{
@@ -270,20 +289,15 @@ a, a:hover, a:visited{
   background: $main-color-orange;
   padding-left: 35px;
   z-index: 1;
-  position: relative;
+  // position: relative;
 }
 
 .cat-menu{
   padding-top: 30px;
   display: block;
-  position: absolute;
+  
   padding-left: 0;
-  top: 100%;
-  left: 0;
-  max-width: 100%;
-  min-width: 100%;
-  width: 100%;
-  min-height: 660px;
+  
   background: $main-nav-background;
   box-shadow: 0 10px 25px rgb(0 0 0 / 10%);
   transition: all .3s ease;
@@ -337,12 +351,12 @@ a, a:hover, a:visited{
 //   height: 660px;
 // }
 
-#banner-and-main-nav-container{
-  position: relative;
-}
+// #banner-and-main-nav-container{
+//   position: relative;
+// }
 
 #main-banner-container{
-  position: absolute;
+  
   width: 100%;
   height: $banner-height;
   padding: 25px 15px;
@@ -366,6 +380,33 @@ a, a:hover, a:visited{
   height: $footer-height;
   background: $footer-background;
   margin-top: $footer-margin-top;
+}
+
+#footer-inner-container{
+  padding: 22px 0;
+}
+
+.footer-contents-container{
+  width: auto;
+}
+
+.footer-content-item img {
+  width: auto;
+  height: 24px;
+}
+
+.footer-content-item{
+  margin-left: 70px;
+}
+
+.footer-content-item:first-child{
+  margin-left: 0;
+}
+
+.footer-content-item a {
+  color: $main-color-white;
+  font-size: $font-size-smaller;
+  margin: 0 5px;
 }
 
 //footer
