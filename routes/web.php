@@ -16,7 +16,6 @@ use App\Http\Controllers\ContactController;
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
-
 Route::get('/', function () {
     return view('app');
-});
+})->name("home");
