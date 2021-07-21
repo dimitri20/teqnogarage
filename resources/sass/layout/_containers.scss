@@ -1,0 +1,16 @@
+.container-main{
+    width: 95%;
+    margin: 0 auto;
+}
+
+.container-main-navbar-grid{
+display: grid;
+grid-template-columns: $main-navbar-and-banner-alignment-col;
+grid-auto-rows: $top-nav-height;
+}
+
+.container-main-banner-and-cat-grid{
+display: grid;
+grid-template-columns: $main-navbar-and-banner-alignment-col;
+grid-auto-rows: minmax($banner-height, auto);
+}

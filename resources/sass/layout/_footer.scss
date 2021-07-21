@@ -1,0 +1,32 @@
+#footer{
+    height: $footer-height;
+    background: $footer-background;
+    margin-top: $footer-margin-top;
+  }
+  
+  #footer-inner-container{
+    padding: 22px 0;
+  }
+  
+  .footer-contents-container{
+    width: auto;
+  }
+  
+  .footer-content-item img {
+    width: auto;
+    height: 24px;
+  }
+  
+  .footer-content-item{
+    margin-left: 70px;
+  }
+  
+  .footer-content-item:first-child{
+    margin-left: 0;
+  }
+  
+  .footer-content-item a {
+    color: $main-color-white;
+    font-size: $font-size-smaller;
+    margin: 0 5px;
+  }

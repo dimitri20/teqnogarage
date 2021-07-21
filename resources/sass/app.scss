@@ -1,11 +1,14 @@
-// Core files
-// @import "core/all";
 
-// Abstract files
-@import "abstracts/all";
+
+// Core files
+@import "core/all";
 
 // Vendor Files
 // @import "vendor/bootstrap.scss";
+@import "bootstrap";
+
+// Abstract files
+@import "abstracts/all";
 
 // Components
 @import "components/all";
