@@ -1,0 +1,16 @@
+@mixin cat-menu-initial($display) {
+    // padding-top: 30px;
+    display: $display;
+    padding-left: 0;
+    background: $main-color-white;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 10%);
+    transition: all 0.3s ease;
+}
+
+@mixin cat-menu-container-initial {
+    width: 340px;
+    height: 100%;
+    background: $main-color-orange;
+    padding-left: 35px;
+    z-index: 1;
+}
