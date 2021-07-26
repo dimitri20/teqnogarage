@@ -14,8 +14,28 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+//Route::redirect('/', '/ka');
+//
+//
+//Route::group(['prefix' => '{language}'], function(){
+//
+//});
 
-Route::get('/', function () {
-    return view('app');
-})->name("home");
+
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+    Route::get('/', function () {
+        return view('app');
+    })->name("home");
+
+    Route::get('/products', function () {
+        return view('products');
+    })->name("products");
+
+    Route::get('/product', function () {
+        return view('product_view');
+    })->name('product');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
