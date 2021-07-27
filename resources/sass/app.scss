@@ -4,5 +4,28 @@
 // Variables
 @import 'variables';
 
+
+
+
+// Core files
+ @import "core/all";
+
+// Abstract files
+@import "abstracts/all";
+
+// Vendor Files
+// @import "bootstrap";
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Components
+@import "components/all";
+
+// Layout
+@import "layout/all";
+
+// Sections
+@import "sections/all";
+
+// Pages
+@import "pages/all";

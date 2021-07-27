@@ -20,7 +20,7 @@ class CreateStorageTable extends Migration
             $table->string("internal_storage")->nullable();
             $table->string("storage_card")->nullable();
 
-            $table->timestamps();
+//            $table->timestamps();
         });
     }
 

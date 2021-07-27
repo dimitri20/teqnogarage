@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-
+use \App\Http\Livewire\HomeComponent;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +39,6 @@ use App\Http\Controllers\ContactController;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('/home/products', App\Http\Controllers\ProductsController::class);
+
+//Route::get("/", HomeComponent::class);

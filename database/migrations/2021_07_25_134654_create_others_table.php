@@ -24,8 +24,7 @@ class CreateOthersTable extends Migration
             $table->string("weight")->nullable();
             $table->string("release")->nullable();
 
-
-            $table->timestamps();
+//            $table->timestamps();
         });
     }
 

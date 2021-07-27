@@ -21,7 +21,8 @@ class CreateCameraTable extends Migration
             $table->string("frontal_camera")->nullable();
             $table->string("frontal_camera_video")->nullable();
 
-            $table->timestamps();
+//            $table->timestamps();
+
         });
     }
 

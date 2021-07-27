@@ -21,7 +21,7 @@ class CreateScreenTable extends Migration
             $table->string("technology")->nullable();
             $table->string("protection")->nullable();
 
-            $table->timestamps();
+//            $table->timestamps();
         });
     }
 

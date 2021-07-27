@@ -22,7 +22,7 @@ class CreatePlatformTable extends Migration
             $table->string("core")->nullable();
             $table->string("graphics_processor")->nullable();
 
-            $table->timestamps();
+//            $table->timestamps();
         });
     }
 
