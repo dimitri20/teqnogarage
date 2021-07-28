@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScreenTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateScreenTable extends Migration
      */
     public function up()
     {
-        Schema::create('screen', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
 
-            $table->string("size")->nullable();
-            $table->string("resolution")->nullable();
-            $table->string("technology")->nullable();
-            $table->string("protection")->nullable();
-
-            $table->timestamps();
+            $table->string("category")->unique();
         });
     }
 
@@ -32,6 +27,6 @@ class CreateScreenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('screen');
+        Schema::dropIfExists('categories');
     }
 }

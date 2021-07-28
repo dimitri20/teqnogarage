@@ -16,15 +16,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
 
-            $table->string("type");
-
-            $table->foreignId("screen_id")->nullable();
-            $table->foreignId("camera_id")->nullable();
-            $table->foreignId("platform_id")->nullable();
-            $table->foreignId("storage_id")->nullable();
-            $table->foreignId("others_id")->nullable();
-
-            $table->longText("description")->nullable();
+            $table->foreignId("categories_id")->default("none");
+            $table->foreignId("types_id")->default("none");
+            $table->string("name");
 
             $table->timestamps();
         });
