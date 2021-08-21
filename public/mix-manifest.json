@@ -1,4 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/productsController.js": "/js/productsController.js",
+    "/js/bannerController.js": "/js/bannerController.js",
+    "/js/categoriesController.js": "/js/categoriesController.js",
     "/css/app.css": "/css/app.css"
 }

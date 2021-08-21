@@ -5,3 +5,9 @@
     color: $white;
   }
 }
+
+#images {
+  .image-container:hover .delete-image{
+    display: block!important;
+  }
+}

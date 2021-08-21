@@ -14,8 +14,21 @@ class ProductDetails extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        "product_id",
-        "attribute",
-        "value"
+        'products_id',
+        'characteristic_category',
+        'characteristic_category_en',
+        'characteristic_category_ka',
+        'characteristic_category_ru',
+        'characteristic_attribute',
+        'characteristic_attribute_en',
+        'characteristic_attribute_ka',
+        'characteristic_attribute_ru',
+        'characteristic_value_ka',
+        'characteristic_value_en',
+        'characteristic_value_ru',
     ];
+
+    public function product(){
+        return $this->hasMany(Products::class);
+    }
 }

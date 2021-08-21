@@ -1,3 +1,13 @@
-.banner-and-cat-container{
-    height: $banner-height;
+#banner-and-cat-container{
+    min-height: $banner-height;
+
+    .banner-col{
+        height: $banner-height;
+    }
+    .carousel-inner {
+        img {
+            height: $banner-height;
+            object-fit: cover;
+        }
+    }
 }

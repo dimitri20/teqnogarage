@@ -8,31 +8,35 @@
         <div class="shadow w-100 p-5">
             <div class="row" >
                 <div class="col-3">
-        
+
                     <div class="row" style="height: 620px;">
-        
+
                         <div class="col mb-4">
                             <div class="product-view-container w-auto">
                                 <div class="card border-1 pt-2">
                                     <div id="product-1" class="carousel carousel-dark slide card-img-top p-3" data-bs-ride="carousel">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="{{ asset("images/0110028_samsung-galaxy-a51-6gb-ram-128gb-lte-a515fd-black_550.png") }}" alt="" class="d-block">
+                                                <img src="{{ asset("storage/product_images/".$images["image_1"]) }}" alt="" class="d-block">
                                             </div>
-            
+
                                             <div class="carousel-item">
-                                                <img src="{{ asset("images/0110028_samsung-galaxy-a51-6gb-ram-128gb-lte-a515fd-black_550.png") }}" alt="" class="d-block">
+                                                <img src="{{ asset("storage/product_images/".$images["image_2"]) }}" alt="" class="d-block">
                                             </div>
-            
+
                                             <div class="carousel-item">
-                                                <img src="{{ asset("images/0110028_samsung-galaxy-a51-6gb-ram-128gb-lte-a515fd-black_550.png") }}" alt="" class="d-block">
+                                                <img src="{{ asset("storage/product_images/".$images["image_3"]) }}" alt="" class="d-block">
                                             </div>
-            
+
+                                            <div class="carousel-item">
+                                                <img src="{{ asset("storage/product_images/".$images["image_4"]) }}" alt="" class="d-block">
+                                            </div>
+
                                             <button class="carousel-control-prev" type="button" data-bs-target="#product-1" data-bs-slide="prev">
                                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                 <span class="visually-hidden">Previous</span>
                                             </button>
-            
+
                                             <button class="carousel-control-next" type="button" data-bs-target="#product-1" data-bs-slide="next">
                                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                 <span class="visually-hidden">Next</span>
@@ -41,27 +45,28 @@
                                     </div>
                                 </div>
                                 <div class="d-flex flex-row justify-content-between w-100 image-triple mt-3">
+
                                     <div class="border p-1 image-triple-item border-selected">
-                                        <img src="{{ asset("images/0110028_samsung-galaxy-a51-6gb-ram-128gb-lte-a515fd-black_550.png") }}" alt="" class="d-block w-100 h-100">
-                                    </div>
-                                    
-                                    <div class="border p-1 image-triple-item">
-                                        <img src="{{ asset("images/0110028_samsung-galaxy-a51-6gb-ram-128gb-lte-a515fd-black_550.png") }}" alt="" class="d-block w-100 h-100">
+                                        <img src="{{ asset("storage/product_images/".$images["image_2"]) }}" alt="" class="d-block w-100 h-100">
                                     </div>
 
                                     <div class="border p-1 image-triple-item">
-                                        <img src="{{ asset("images/0110028_samsung-galaxy-a51-6gb-ram-128gb-lte-a515fd-black_550.png") }}" alt="" class="d-block w-100 h-100">
+                                        <img src="{{ asset("storage/product_images/".$images["image_3"]) }}" alt="" class="d-block w-100 h-100">
+                                    </div>
+
+                                    <div class="border p-1 image-triple-item">
+                                        <img src="{{ asset("storage/product_images/".$images["image_4"]) }}" alt="" class="d-block w-100 h-100">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="row">
                         <div class="col">
                             <div class="w-100">
-                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/8SiRTLIXSzE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="100%" height="315" src="{{ $product->video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -72,7 +77,7 @@
                         <div class="col">
                             <div class="text-start text-wrap fw-bold">
                                 <h2 class="h-2">
-                                    Samsung Galaxy A51 6GB RAM 128GB LTE A515FD Black
+                                    {{ $product->name }}
                                 </h2>
                             </div>
                         </div>
@@ -81,9 +86,9 @@
                     <div class="row align-items-center">
                         <div class="col-2">
                             <div class="fw-bolder fs-4">
-                                <span>280</span>
+                                <span>{{ $product->price_from }}</span>
                                 -
-                                <span>340</span>
+                                <span>{{ $product->price_to }}</span>
                                 GEL
                             </div>
                         </div>
@@ -93,11 +98,16 @@
                             </a>
                         </div>
                         <div class="col">
-                            <div class="fs-5 text-end">
-                                
-                                <img src="{{asset("storage/icons/checked.svg")}}" alt="" class="icon-main pb-1">
-                                <span>
-                                    მარაგშია
+                            <div class="fs-5">
+
+                                <span class="d-flex flex-row align-items-center">
+                                    @if($product->available)
+                                        <i class="bi bi-check-lg me-1 text-success"></i>
+                                        მარაგშია
+                                    @else
+                                        <i class="bi bi-x-lg me-1 text-danger"></i>
+                                        არ არის მარაგში
+                                    @endif
                                 </span>
                             </div>
                         </div>
@@ -107,7 +117,7 @@
                         <div class="col">
                             <div>
                                 <button class="btn button-orange rounded-pill p-2 px-4 fs-5">
-                                     განვადების გაფორმება
+                                    განვადების გაფორმება
                                 </button>
                             </div>
                         </div>
@@ -125,377 +135,50 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row py-2 rounded-pill px-2">
-                                        <div class="col-4">
-                                            <div class="fs-6 fw-bolder py-2">
-                                                <span>
-                                                    მწარმოებელი
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
+                            @foreach($productDetails as $productKey => $detail)
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row py-2 rounded-pill px-2">
+                                            <div class="col-4">
+                                                <div class="fs-6 fw-bolder py-2">
                                                     <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
+                                                        {{ $detail['category'] }}
                                                     </span>
                                                 </div>
                                             </div>
 
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
+                                            <div class="col">
+                                                @foreach($detail['values'] as $detailsKey => $details)
+                                                    <div class="d-flex flex-row align-items-center justify-content-start w-100 px-4 py-2">
 
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
+                                                        <div class="w-50">
+                                                            <span>
+                                                                {{ $details['characteristic_attribute'] }}
+                                                            </span>
+                                                        </div>
 
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
+                                                        <div class="w-50">
+                                                            <span>
+                                                                {{ $details['characteristic_value_en'] }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
 
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row py-2 rounded-pill px-2">
-                                        <div class="col-4">
-                                            <div class="fs-6 fw-bolder py-2">
-                                                <span>
-                                                    მწარმოებელი
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
+                            @endforeach
 
 
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row py-2 rounded-pill px-2">
-                                        <div class="col-4">
-                                            <div class="fs-6 fw-bolder py-2">
-                                                <span>
-                                                    მწარმოებელი
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row py-2 rounded-pill px-2">
-                                        <div class="col-4">
-                                            <div class="fs-6 fw-bolder py-2">
-                                                <span>
-                                                    მწარმოებელი
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="row py-2 rounded-pill px-2">
-                                        <div class="col-4">
-                                            <div class="fs-6 fw-bolder py-2">
-                                                <span>
-                                                    მწარმოებელი
-                                                </span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col">
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-light-gray px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="d-flex flex-row align-items-center justify-content-start w-100 bg-white px-4 py-2">
-                                                <div class="w-50">
-                                                    <span>
-                                                        ბრენდი
-                                                    </span>
-                                                </div>
-
-                                                <div class="w-50">
-                                                    <span>
-                                                        Samsung
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-    
+
     </div>
 </div>
 

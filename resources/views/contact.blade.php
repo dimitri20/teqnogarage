@@ -8,7 +8,84 @@
             <div class="col-12 col-xl-4 py-3 align-self-center h-auto">
     
                 <div class="row align-items-center">
-                    <div class="col col-xl-12 mb-4">
+                    
+                    @if(array_key_exists('phone_number', $info))
+                        
+                        <div class="col col-xl-12 mb-4">
+                            <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
+                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+        
+                                <div class="d-flex flex-column justify-content-start px-4">
+                                    <span class="mb-1">Phone</span>
+                                    <a href="#" class="text-muted">{{ $info['phone_number'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
+
+                    @if(array_key_exists('facebook', $info))
+                        
+                        <div class="col col-xl-12 mb-4">
+                            <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
+                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+        
+                                <div class="d-flex flex-column justify-content-start px-4">
+                                    <span class="mb-1">facebook</span>
+                                    <a href="#" class="text-muted">{{ $info['facebook'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
+    
+                    @if(array_key_exists('gmail', $info))
+                        
+                        <div class="col col-xl-12 mb-4">
+                            <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
+                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+        
+                                <div class="d-flex flex-column justify-content-start px-4">
+                                    <span class="mb-1">E-mail</span>
+                                    <a href="#" class="text-muted">{{ $info['gmail'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
+
+                    @if(array_key_exists('instagram', $info))
+                        
+                        <div class="col col-xl-12 mb-4">
+                            <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
+                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+        
+                                <div class="d-flex flex-column justify-content-start px-4">
+                                    <span class="mb-1">instagram</span>
+                                    <a href="#" class="text-muted">{{ $info['instagram'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
+
+                    @if(array_key_exists('whatsapp', $info))
+                        
+                        <div class="col col-xl-12 mb-4">
+                            <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
+                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+        
+                                <div class="d-flex flex-column justify-content-start px-4">
+                                    <span class="mb-1">whatsapp</span>
+                                    <a href="#" class="text-muted">{{ $info['whatsapp'] }}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    @endif
+                    
+    
+                    {{-- <div class="col col-xl-12 mb-4">
                         <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
                             <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
     
@@ -39,29 +116,7 @@
                                 <a href="#" class="text-muted">+99555555555</a>
                             </div>
                         </div>
-                    </div>
-    
-                    <div class="col col-xl-12 mb-4">
-                        <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
-                            <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
-    
-                            <div class="d-flex flex-column justify-content-start px-4">
-                                <span class="mb-1">Phone</span>
-                                <a href="#" class="text-muted">+99555555555</a>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="col col-xl-12 mb-4">
-                        <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
-                            <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
-    
-                            <div class="d-flex flex-column justify-content-start px-4">
-                                <span class="mb-1">Phone</span>
-                                <a href="#" class="text-muted">+99555555555</a>
-                            </div>
-                        </div>
-                    </div>
+                    </div> --}}
                     
                 </div>
     
@@ -84,7 +139,7 @@
 <div class="py-5">
     <div class="container">
 
-        <div class="feedback-form-inner-container">
+        <div class="px-5">
             <div class="row">
                 <div class="col">
                     <h1 class="h1 fw-bolder">

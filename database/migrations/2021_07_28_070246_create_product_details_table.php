@@ -16,10 +16,21 @@ class CreateProductDetailsTable extends Migration
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId("product_id")->comment("this is entity");
-            $table->string("characteristic_type");
+            $table->foreignId("products_id")->comment("this is entity");
+
+            $table->string("characteristic_category");
+            $table->string("characteristic_category_en")->nullable();
+            $table->string("characteristic_category_ka")->nullable();
+            $table->string("characteristic_category_ru")->nullable();
+
             $table->string("characteristic_attribute");
-            $table->string("characteristic_value");
+            $table->string("characteristic_attribute_en")->nullable();
+            $table->string("characteristic_attribute_ka")->nullable();
+            $table->string("characteristic_attribute_ru")->nullable();
+
+            $table->string("characteristic_value_ka")->nullable();
+            $table->string("characteristic_value_en")->nullable();
+            $table->string("characteristic_value_ru")->nullable();
 
         });
     }

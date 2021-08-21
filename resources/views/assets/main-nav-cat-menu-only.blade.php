@@ -11,84 +11,14 @@
                         </div>
 
                         <ul class="cat-menu-hoverable w-100">
-                            <li class="cat-menu-item active-sub">
-                                <a href="#">
-                                    ტელეფონები
-                                </a>
-
-                                <ul class="cat-menu-sub">
-                                    <li>
-                                        <a href="#">
-                                            android
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            android
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            android
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            android
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            android
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            iphone
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">
-                                            xiaomi
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                            <li class="cat-menu-item">
-                                <a href="#">
-                                    ტელეფონები
-                                </a>
-
-                            </li>
-
-                            <li class="cat-menu-item">
-                                <a href="#">
-                                    ტელეფონები
-                                </a>
-                            </li>
-
-                            <li class="cat-menu-item">
-                                <a href="#">
-                                    ტელეფონები
-                                </a>
-                            </li>
-                            
+                            @include('assets.cat-menu')
                         </ul>
                     </div>
 
                     <div id="banner-and-main-nav-container" class="flex-fill ms-auto">
                         <div class="main-nav-menu h-100">
                             <ul class="d-flex flex-row h-100">
-                                <li class="main-nav-menu-item active-page"><a href="#">მთავარი</a></li>
-                                <li class="main-nav-menu-item"><a href="{{route("contact")}}">კონტაქტი</a></li>
-                                <li class="main-nav-menu-item"><a href="#">ჩვენ შესახებ</a></li>
+                                @include('assets.menu-items')
                             </ul>
                         </div>
                     </div>
