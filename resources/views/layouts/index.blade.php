@@ -1,227 +1,210 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TEQNO GARAGE</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('css/sapp.css') }}">
-    <link rel="shortcut icon" href="/images/title-logo.png" type="image/png">
+    {{-- <link rel="stylesheet" href="{{ asset('css/reset.css') }}"> --}}
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    
+    <title>Document</title>
 </head>
-<body>
+<body id="body">
+    
+    <header>
+        @php
+    
+            use App\Models\Contact;
 
-    <header class="header">
+            $data = Contact::all()[0];
+            
 
-        <div class="top_bar">
-            <div class="container container-maxw">
-                <div class="row">
-                    <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/phone.png') }}" alt="">
+        @endphp
+        <div id="top-nav-container">
+            <div class="container-main">
+                <div id="top-nav-inner-container">
+                    <div class="row">
+                        <div class="col d-flex flex-row">
+                            <div class="top-nav-contents-container d-flex flex-row">
+                                <div class="top-nav-content-item">
+                                    <a href="{{ $data->facebook }}" target="_blank">
+                                        <img src="{{ asset('storage/icons/facebook.svg') }}" alt="">
+                                    </a>
                                 </div>
-                                +995 555 555 555
-                            </a>
-                        </div>
-    
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/mail.png') }}" alt="">
+
+                                <div class="top-nav-content-item">
+                                    <a href="{{ $data->instagram }}" target="_blank">
+                                        <img src="{{ asset('storage/icons/instagram.svg') }}" alt="">
+                                    </a>
                                 </div>
-                                example@gmail.com
-                            </a>
-                        </div>
-    
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/facebook.png') }}" alt="">
+
+                                <div class="top-nav-content-item">
+                                    <a href="mailto:{{ $data->gmail }}" target="_blank">
+                                        <img src="{{ asset('storage/icons/gmail.svg') }}" alt="">
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-    
-                        <div class="top_bar_contact_item">
-                            <a href="#">
-                                <div class="top_bar_icon">
-                                    <img src="{{ asset('storage/icons/whatsapp.png') }}" alt="">
+
+                                <div class="top-nav-content-item">
+                                    <a href="https://wa.me/{{$data->whatsapp}}/" target="_blank">
+                                        <img src="{{ asset('storage/icons/whatsapp.svg') }}" alt="">
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
+
+                                <div class="top-nav-content-item">
+                                    <a href="tel:{{ $data->phone_number }}">
+                                        <img src="{{ asset('storage/icons/telephone.svg') }}" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="top-nav-content-item">
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ $data->location }}" target="_blank">
+                                        <img src="{{ asset('storage/icons/google-maps.svg') }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
     
-                        <div class="top_bar_content ms-auto">
-                            <div class="top_bar_menu">
-                                <ul class="standard_dropdown top_bar_dropdown">
-                                    <li class="hassubs">
-                                        <a href="#">
-                                            English
-                                        </a>
+                            <div class="top-nav-contents-container d-flex flex-row ms-auto">
+
+                                <div class="top-nav-content-item">
+                                    <div class="sl-nav">
                                         <ul>
-                                            <li>Georgian</li>
-                                        </ul>
-                                    </li>
+                                          <li>
 
-                                    <li class="hassubs">
-                                        <a href="#">
-                                            $ US dollar
-                                        </a>
-                                        <ul>
-                                            <li><a href="#">GEO Lari</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-    
-                    
-                </div>
-            </div>
-        </div>
-    
-        <div class="middle-bar">
-            <div class="container container-maxw">
-                <div class="row">
-                    
-                    <div class="col p-4">
+                                            <i class="sl-flag flag-ka"><div id="georgian"></div></i> <span class="active">KA</span>
+                                            <div class="triangle"></div>
+                                            
+                                            <ul>
+                                              <li><i class="sl-flag flag-en"><div id="english"></div></i> <span class="active">EN</span></li>
+                                              <li><i class="sl-flag flag-ru"><div id="russian"></div></i> <span>RU</span></li>
+                                            </ul>
 
-                        {{-- <style>
-                            #logo {
-                                margin-left: -15px;
-                            }
-                            #logo img {
-                                height: 70px;
-                            }
-                        </style> --}}
-
-                        <div class="d-flex justify-content-start">
-                            <div id="logo">
-                                <a href="{{ asset('/') }}">
-                                    <img src="{{ asset('images/main-logo.png') }}" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="col-md-6">
-                        {{-- <div class="d-flex justify-content-center">
-                            <div id="logo">
-                                <a href="{{ asset('/') }}">
-                                    <img src="{{ asset('images/main-logo.png') }}" alt="">
-                                </a>
-                            </div>
-                        </div> --}}
-                    </div>
-    
-                    <div class="col p-4">
-                        <div class="cart">
-                            
-                            <div class="d-flex flex-row justify-content-end align-middle">
-                                <div class="cart_icon">
-                                    <img src="{{ asset('images/cart.webp') }}" alt="">
-                                    <div class="cart_count">
-                                        <span>10</span>
-                                    </div>
-                                </div>
-    
-                                <div class="cart_content">
-                                    <div class="cart_text">
-                                        <a href="#">Cart</a>
-                                    </div>
-    
-                                    <div class="cart_price">$85</div>
-                                </div>
-                            </div>
-                            
-                            
-                        </div>
-                        
-                    </div>
-    
-                </div>
-            </div>
-        </div>
-    
-        <nav class="main_nav">
-            <div class="container container-maxw">
-                <div class="row">
-                    <div class="col">
-                        <div class="main_nav_content d-flex flex-row">
-                        
-                            <div class="cat_menu_container">
-                                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-                                    <svg style="fill:#fff;" xmlns="http://www.w3.org/2000/svg" height="20pt" viewBox="0 -53 384 384" width="20pt"><path d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/></svg>
-                                    <div class="cat_menu_text">categories</div>
-                                </div>
-                                
-                                <ul 
-                                    class="cat_menu" 
-                                    @if (Request::is('/'))
-                                        style="display:block";
-                                    @endif >
-
-                                    <li><a href="#">Computers &amp; Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-                                    <li><a href="#">Cameras &amp; Photos<i class="fas fa-chevron-right"></i></a></li>
-                                    <li class="hassubs">
-                                       <a href="#">Hardware<i class="fas fa-chevron-right">></i></a>
-                                       <ul>
-                                          <li class="hassubs">
-                                             <a href="#">Menu Item</a>
-                                             <ul>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                             </ul>
                                           </li>
-                                          <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                          <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                          <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                       </ul>
-                                    </li>
-                                    <li><a href="#">Smartphones &amp; Tablets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">TV &amp; Audio<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Video Games &amp; Consoles<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
-                                </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+
                             </div>
-                            
-                            <div class="main_nav_menu ms-auto">
-                                <ul class="standard_dropdown main_nav_dropdown">
-                                    <li>
-                                        <a href="{{ asset('/') }}">
-                                            Home
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ asset('/contact') }}">
-                                            Contact
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            About
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    
-    @yield('content')
+        </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+        <div id="middle-nav-container">
+            <div class="container-main">
+                <div id="middle-nav-inner-container">
+                    <div class="row align-items-center">
+
+                        <div class="col-12 col-lg-auto p-4">
+                            <div class="d-flex justify-content-center justify-content-lg-start">
+                                <div id="logo">
+                                    <a href="{{ asset('/') }}">
+                                        <img src="{{ asset('images/main-logo.png') }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col d-block d-lg-none">
+                            <button id="collapse-cat-button" class="btn cat-toggler">
+                                <i class="bi bi-list"></i>
+                            </button>
+
+                            <div id="cat-menu-collapse" class="d-none">
+                                <div class="cat-menu-full-width">
+
+                                    <div class="row">
+                                        <div class="col">
+                                            <button id="close-cat-menu" class="btn float-end fs-1">
+                                                <i class="bi bi-x-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row row-cols-1 justify-content-center text-center gap-3">
+                                        <div class="col">
+                                            <div class="main-nav-menu">
+                                                <ul class="d-flex flex-column p-0 m-0">
+                                                    @include('assets.menu-items')
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row my-3">
+                                        <div class="col">
+                                            <ul class="d-flex flex-row justify-content-center gap-3">
+                                                <i class="sl-flag flag-ka"><div id="georgian-1"></div></i> <span>KA</span>
+                                                <li><i class="sl-flag flag-en"><div id="english-1"></div></i> <span>EN</span></li>
+                                                <li><i class="sl-flag flag-ru"><div id="russian-1"></div></i> <span>RU</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mt-5 mb-2">
+                                        <div class="col">
+                                            <div class="text-center">
+                                                <h3>კატეგორიები</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row justify-content-center">
+                                        <div class="col">
+
+                                            <nav class="w-100">
+                                                
+                                                @include('assets.cat-menu')
+
+                                            </nav>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col p-4 cart-container">
+                            @include("assets.cart")
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        @if (request()->routeis(['index']))
+
+            @include("assets.main-nav-cat-menu-with-banner")
+            
+        @else
+
+            @include("assets.main-nav-cat-menu-only")
+
+        @endif
+        
+
+        
+    </header>
+
+    
+
+    @yield("content")
+
+
+    @include('assets.footer')
+
+    {{-- <script src="{{asset("js/app.js")}}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="{{ asset("js/app.js") }}"></script>
 </body>
+
 </html>

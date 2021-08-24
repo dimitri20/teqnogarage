@@ -1,0 +1,88 @@
+.cat-menu-title {
+    height: 100%;
+    cursor: pointer;
+}
+
+.cat-menu-text {
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    text-transform: uppercase;
+    margin-left: 20px;
+}
+
+.cat-menu-container {
+    @include cat-menu-container-initial;
+}
+
+.cat-menu-container-hoverable {
+    @include cat-menu-container-initial;
+    z-index: 9999;
+    position: relative;
+}
+
+.cat-menu {
+    @include cat-menu-initial(block);
+    padding-top: 30px;
+    width: 340px;
+    padding-bottom: 70px;
+}
+
+.cat-menu-hoverable {
+    @include cat-menu-initial(none);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 30px 0 100px 0;
+    z-index: 99999;
+}
+
+.cat-menu-container-hoverable:hover .cat-menu-hoverable {
+    display: block;
+}
+
+.cat-menu-item {
+    padding: 10px 30px;
+    border-bottom: solid 1px #f2f2f2;
+    font-size: $font-size-normal;
+}
+
+.cat-menu-item:hover>a {
+    color: $main-color-orange!important;
+}
+
+.cat-menu-sub {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    list-style: disc;
+    transition: .25s;
+}
+
+.cat-menu-sub li {
+    font-size: $font-size-smaller;
+}
+
+.cat-menu-sub li:hover>a {
+    color: $main-color-orange!important;
+}
+
+.cat-toggler {
+    font-size: 50px;
+}
+
+#cat-menu-collapse {
+    transition: all 0.2s ease-in-out;
+    .cat-menu-full-width {
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #fff;
+        z-index: 999;
+    }
+}
+
+body {
+    position: relative;
+}

@@ -1,0 +1,3 @@
+<li class="main-nav-menu-item @if(request()->routeis(['index'])) active-page @endif"><a href="{{ route('index', app()->getLocale()) }}">მთავარი</a></li>
+<li class="main-nav-menu-item @if(request()->routeis(['contact'])) active-page @endif"><a href="{{route("contact", app()->getLocale())}}">კონტაქტი</a></li>
+<li class="main-nav-menu-item @if(request()->routeis(['about'])) active-page @endif"><a href="{{ route('about', app()->getLocale()) }}">ჩვენ შესახებ</a></li>

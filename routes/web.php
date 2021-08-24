@@ -1,7 +1,14 @@
 <?php
 
+use App\Http\Controllers\AboutConotroller;
+use App\Http\Controllers\AppController;
+use App\Http\Controllers\BannerImagesController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\contactInfoController;
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +21,52 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::redirect('/admin', '/admin/home');
 
+Route::group(['prefix' => 'admin'], function () {
 
-Route::get('/', function () {
-    return view('app');
+    Auth::routes();
+
+    Route::get('/home', [HomeController::class, 'index'])->name('admin.home');
+
+    Route::resource('home/products', ProductsController::class);
+
+    Route::resource('home/categories', CategoriesController::class, [
+        'only' => ['index', 'create', 'store', 'destroy']
+    ]);
+
+    Route::resource('home/bannerImages', BannerImagesController::class, [
+        'only' => ['index', 'create', 'store', 'destroy']
+    ]);
+
+    Route::resource('home/contactInfo', contactInfoController::class, [
+        'only' => ['index', 'create', 'store']
+    ]);
+
+    Route::resource('home/about', AboutConotroller::class, [
+        'only' => ['index', 'create', 'store']
+    ]);
+
 });
+
+
+Route::redirect('/', '/ka');
+
+
+Route::group(['prefix' => '{language}'], function(){
+
+    Route::get('/', [AppController::class, 'index'])->name('index');
+    Route::get('/contact', [AppController::class, 'contact'])->name('contact');
+    Route::get('/products', [AppController::class, 'products'])->name('index.products');
+
+    Route::get('/product/{id}', [AppController::class, 'productReview'])->name('index.product');
+    Route::get('/about', [AppController::class, 'about'])->name('about');
+
+});
+
+// Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::patch('/update-cart', [CartController::class, 'update'])->name('cart.update');
+Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('cart.remove');
+
+

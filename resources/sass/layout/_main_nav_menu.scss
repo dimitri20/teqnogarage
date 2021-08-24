@@ -1,0 +1,18 @@
+.main-nav-menu {
+    line-height: 55px;
+    text-align: center;
+}
+
+.main-nav-menu-item {
+    padding: 0 25px;
+    font-size: $font-size-normal;
+}
+
+.main-nav-menu-item:hover {
+    opacity: .7;
+}
+
+.active-page,
+.active-page>a {
+    color: $main-color-orange!important;
+}

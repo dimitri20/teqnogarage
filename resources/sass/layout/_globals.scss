@@ -1,0 +1,29 @@
+.icon-main {
+    width: $icon-width;
+    height: $icon-height;
+}
+
+.icon-add-to-cart {
+    width: 70px;
+}
+
+.border-selected {
+    border-color: $main-color-orange!important;
+}
+
+.cat-active {
+    color: $main-color-orange;
+}
+
+.button-orange {
+    background: $main-color-orange!important;
+    color: $main-color-white;
+}
+
+.bg-light-gray {
+    background: $main-color-light-gray;
+}
+
+.bg-white {
+    background: $main-color-white;
+}

@@ -1,0 +1,21 @@
+
+@import 'core/all';
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Variables
+@import 'variables';
+
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+@import 'abstracts/all';
+
+@import 'components/all';
+
+@import 'layout/all';
+
+@import 'breakpoints/all';
