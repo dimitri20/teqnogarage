@@ -54,7 +54,7 @@ class BannerImagesController extends Controller
               'banner_image' => $path
           ]);
   
-          return redirect("/home/bannerImages/create");
+          return redirect(route('bannerImages.create'));
     }
 
     /**
@@ -101,12 +101,11 @@ class BannerImagesController extends Controller
     {
         $image = BannerImages::where('id', $id);
     
-        
         if (storage_path("app/public/".$image->first()->banner_image)) {
             unlink(storage_path("app/public/".$image->first()->banner_image));   
             $image->delete();
         }
 
-        return redirect("/home/bannerImages/create");
+        return redirect(route('bannerImages.create'));
     }
 }

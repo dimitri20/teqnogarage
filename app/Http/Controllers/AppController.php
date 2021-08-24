@@ -27,7 +27,7 @@ class AppController extends Controller
 
 
     public function products(Request $request){
-    
+
         $categories_id = [];
         foreach(Categories::select('id')->get() as $val){
             array_push($categories_id, $val->id);
@@ -54,18 +54,25 @@ class AppController extends Controller
                 case "name":
                     $orderBy[0] = "name";
                 case "price":
-                    $orderBy[0] = "price_to";
+                    $orderBy[0] = "price_from";
             }
         }
 
+        $products = new Products();
         //filter
 
         if(array_key_exists('categories', $request->input())){
             $categories_id = array_intersect($categories_id, $request->input()['categories']);
+            if(sizeof($categories_id) > 0){
+                $products = $products->whereIn('categories_id', $categories_id);
+            }
         }
 
         if(array_key_exists('subcategories', $request->input())){
             $subcategories_id = array_intersect($subcategories_id, $request->input()['subcategories']);
+            if(sizeof($subcategories_id) > 0){
+                $products = $products->whereIn('subcategories_id', $subcategories_id);
+            }
         }
 
         if(array_key_exists('price', $request->input())){
@@ -83,13 +90,17 @@ class AppController extends Controller
             }
         }
         
-    
-        $products = Products::whereIn('categories_id', $categories_id)
-                        ->whereIn('subcategories_id', $subcategories_id)
+        $products = $products                
                         ->where('price_from', '>=', (int)$price_min)
                         ->where('price_from', '<=', (int)$price_max)
                         ->orderBy($orderBy[0], $orderBy[1])
                         ->get();
+        // $products = Products::whereIn('categories_id', $categories_id)
+        //                 ->whereIn('subcategories_id', $subcategories_id)
+                        // ->where('price_from', '>=', (int)$price_min)
+                        // ->where('price_from', '<=', (int)$price_max)
+                        // ->orderBy($orderBy[0], $orderBy[1])
+                        // ->get();
         
         
                         

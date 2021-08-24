@@ -6,7 +6,6 @@ use App\Http\Controllers\BannerImagesController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\contactInfoController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\HomeController;
@@ -33,7 +32,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('home/products', ProductsController::class);
 
     Route::resource('home/categories', CategoriesController::class, [
-        'only' => ['index', 'create', 'store']
+        'only' => ['index', 'create', 'store', 'destroy']
     ]);
 
     Route::resource('home/bannerImages', BannerImagesController::class, [

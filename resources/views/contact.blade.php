@@ -13,7 +13,7 @@
                         
                         <div class="col col-xl-12 mb-4">
                             <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
-                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+                                <img src="{{ asset("storage/icons/telephone.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
                                     <span class="mb-1">Phone</span>
@@ -32,7 +32,7 @@
         
                                 <div class="d-flex flex-column justify-content-start px-4">
                                     <span class="mb-1">facebook</span>
-                                    <a href="#" class="text-muted">{{ $info['facebook'] }}</a>
+                                    <a href="#" class="text-muted">{{ explode('/', $info['facebook'])[3] }}</a>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                         
                         <div class="col col-xl-12 mb-4">
                             <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
-                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+                                <img src="{{ asset("storage/icons/gmail.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
                                     <span class="mb-1">E-mail</span>
@@ -58,11 +58,11 @@
                         
                         <div class="col col-xl-12 mb-4">
                             <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
-                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+                                <img src="{{ asset("storage/icons/instagram.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
                                     <span class="mb-1">instagram</span>
-                                    <a href="#" class="text-muted">{{ $info['instagram'] }}</a>
+                                    <a href="#" class="text-muted">{{ explode('/', $info['instagram'])[3] }}</a>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                         
                         <div class="col col-xl-12 mb-4">
                             <div class="d-flex flex-row justify-content-center align-items-center shadow contact-item mx-auto mx-xl-0">
-                                <img src="{{ asset("storage/icons/facebook.svg") }}" alt="" class="icon-main">
+                                <img src="{{ asset("storage/icons/whatsapp.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
                                     <span class="mb-1">whatsapp</span>

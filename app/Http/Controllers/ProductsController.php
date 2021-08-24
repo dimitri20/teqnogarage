@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\FilterAndSort\CustomSort;
+
 use App\Models\Categories;
 use App\Models\Images;
 use App\Models\ProductDetails;
 use App\Models\Products;
 use Illuminate\Http\Request;
-use Spatie\QueryBuilder\AllowedFilter;
-use Spatie\QueryBuilder\AllowedSort;
-use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\Subcategory;
 
 class ProductsController extends Controller
@@ -30,22 +27,93 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $products = QueryBuilder::for(Products::class)
-        //     ->defaultSort("name")
-        //     ->allowedSorts("price_from")
-        //     ->join('categories', 'products.categories_id', '=', 'categories.id')
-        //     ->allowedFilters([
-        //         AllowedFilter::exact('category', 'categories.category')
-        //     ])
-        //     ->get();
+        $categories_id = [];
+        foreach(Categories::select('id')->get() as $val){
+            array_push($categories_id, $val->id);
+        }
+        
+        $subcategories_id = [];
+        foreach(Subcategory::select('id')->get() as $val){
+            array_push($subcategories_id, $val->id);
+        }
+        
+        $price_min = Products::select("price_from")->min('price_from');
+        $price_max = Products::select("price_to")->max("price_from");
+
+        //sorting
+        $orderBy = ['id', 'desc'];
+        if(array_key_exists('sortBy', $request->input())){
+            if(str_contains($request->input('sortBy'), "-")){
+                $orderBy[1] = "desc";
+            } else if (str_contains($request->input('sortBy'), '+')){
+                $orderBy[1] = 'asc';
+            }
+
+            switch(str_replace(['+', '-'], "", $request->input('sortBy'))){
+                case "name":
+                    $orderBy[0] = "name";
+                case "price":
+                    $orderBy[0] = "price_from";
+            }
+        }
+
+        $products = new Products();
+        //filter
+
+        if(array_key_exists('categories', $request->input())){
+            $categories_id = array_intersect($categories_id, $request->input()['categories']);
+            if(sizeof($categories_id) > 0){
+                $products = $products->whereIn('categories_id', $categories_id);
+            }
+        }
+
+        if(array_key_exists('subcategories', $request->input())){
+            $subcategories_id = array_intersect($subcategories_id, $request->input()['subcategories']);
+            if(sizeof($subcategories_id) > 0){
+                $products = $products->whereIn('subcategories_id', $subcategories_id);
+            }
+        }
+
+        if(array_key_exists('price', $request->input())){
+
+            if(array_key_exists('min', $request->input()['price'])){
+                if($request->input()['price']['min'] != ""){
+                    $price_min = $request->input()['price']['min'];
+                }
+            }
+
+            if(array_key_exists('max', $request->input()['price'])){
+                if($request->input()['price']['max'] != ""){
+                    $price_max = $request->input()['price']['max'];
+                }
+            }
+        }
+        
+        $products = $products                
+                        ->where('price_from', '>=', (int)$price_min)
+                        ->where('price_from', '<=', (int)$price_max)
+                        ->orderBy($orderBy[0], $orderBy[1])
+                        ->get();
+        // $products = Products::whereIn('categories_id', $categories_id)
+        //                 ->whereIn('subcategories_id', $subcategories_id)
+                        // ->where('price_from', '>=', (int)$price_min)
+                        // ->where('price_from', '<=', (int)$price_max)
+                        // ->orderBy($orderBy[0], $orderBy[1])
+                        // ->get();
+        
+        
+                        
+        
+            
 
         
         return view("admin.products.index")
-            ->with('products', Products::all())
+            ->with('products', $products)
             ->with('images', Images::with('products')->get())
-            ->with('categories', $this->getCategories());
+            ->with('categories', Categories::all())
+            ->with('subcategories', Subcategory::all());
     }
 
     /**
@@ -56,7 +124,8 @@ class ProductsController extends Controller
     public function create()
     {
         return view("admin.products.create")
-            ->with('categories', Categories::all());
+            ->with('categories', Categories::all())
+            ->with('subcategories', Subcategory::all());
     }
 
     /**
@@ -71,7 +140,7 @@ class ProductsController extends Controller
         $request -> validate([
             'name' => 'required',
             'category' => 'required',
-            'video_url' => 'required',
+            'subcategory' => 'required',
             'available' => 'required',
             'price_from' => 'required',
             'price_to' => 'required',
@@ -101,15 +170,17 @@ class ProductsController extends Controller
             $request->image_4->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[3]);
         }
 
+        
 
 
         Products::create([
             'name' => $request->input('name'),
             'categories_id' => $request->input('category'),
+            'subcategories_id' => $request->input('subcategory'),
             'price_from' => $request->input('price_from'),
             'price_to' => $request->input('price_to'),
             'video_url' => $request->input('video_url'),
-            'available' => $request->input('available'),
+            'available' => (bool)$request->input('available'),
             'description_ka' => $request->input('description_ka'),
             'description_en' => $request->input('description_en'),
             'description_ru' => $request->input('description_ru'),
@@ -152,7 +223,7 @@ class ProductsController extends Controller
         ProductDetails::insert($product_details);
 
 
-        return redirect('/home/products')->with('message', 'product created successfully');
+        return redirect(route('products.index'))->with('message', 'product created successfully');
     }
 
     /**
@@ -219,7 +290,8 @@ class ProductsController extends Controller
             ->with('product', Products::where('id', $id)->first())
             ->with('images', Images::where('products_id', $id)->first())
             ->with('categories', Categories::all())
-            ->with('productDetails', $productDetailsFormatted);
+            ->with('productDetails', $productDetailsFormatted)
+            ->with('subcategories', Subcategory::all());
     }
 
     /**
@@ -258,16 +330,21 @@ class ProductsController extends Controller
         Products::where("id", $id)->update([
             'name' => $request->input('name'),
             'categories_id' => $request->input('category'),
+            'subcategories_id' => (int)$request->input('subcategory'),
             'price_from' => $request->input('price_from'),
             'price_to' => $request->input('price_to'),
             'video_url' => $request->input('video_url'),
-            'available' => $request->input('available'),
+            'available' => (bool)$request->input('available'),
             'description_ka' => $request->input('description_ka'),
             'description_en' => $request->input('description_en'),
             'description_ru' => $request->input('description_ru'),
         ]);
 
-        Images::where('products_id', $id)->update($imagesToUpdate);
+        
+
+        if(sizeof($imagesToUpdate) > 0){
+            Images::where('products_id', $id)->update($imagesToUpdate);
+        }
 
         $product_details_old = ProductDetails::where('products_id', $id);
         $product_details_old->delete();
@@ -299,7 +376,7 @@ class ProductsController extends Controller
 
         ProductDetails::insert($product_details);
 
-        return redirect('/home/products/'.$id)
+        return redirect(route('products.show', $id))
             ->with('message', 'product updated successfully');
     }
 
@@ -323,7 +400,7 @@ class ProductsController extends Controller
         $productDetails->delete();
         $productImages->delete();
 
-        return redirect('/home/products')
+        return redirect(route('products.index'))
             ->with('message', 'Product removed successfully');
     }
 

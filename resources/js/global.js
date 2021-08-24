@@ -5,19 +5,29 @@ $(document).ready(() => {
         $($(e.target).closest('.cat-menu-item').find('.cat-menu-sub').get(0)).toggleClass('d-none')
     })
 
-    $('.cat-menu-item').click((e) => {
+    $('.cat-menu-item').hover((e) => {
 
-        $(e.target).find('span').toggleClass('cat-active')
-        $($(e.target).find('.cat-menu-sub').get(0)).toggleClass('d-none')
+        if ($(e.target).find('.cat-menu-sub').children().length > 0) {
+            $($(e.target).find('.cat-menu-sub').get(0)).toggleClass('d-none')
+        }
 
     })
 
 
     queries = decodeQuerys($(location).attr('search'))
 
-
     queries.forEach(element => {
-        $("#filterForm input[type = 'checkbox'][name = '" + Object.keys(element)[0] + "'][value = '" + element[Object.keys(element)[0]] + "']").prop("checked", true)
+        let key = Object.keys(element)[0]
+        $("#filterForm input[type = 'checkbox'][name = '" + key + "'][value = '" + element[key] + "']").prop("checked", true)
+        if (key == 'sortBy') {
+            $('#sortBy').val(element[key])
+        }
+        if (key == 'price[min]') {
+            $('#price_min').val(element[key])
+        }
+        if (key == 'price[max]') {
+            $('#price_max').val(element[key])
+        }
     })
 
     $("#filterForm input[type = 'checkbox']").each((index, element) => {

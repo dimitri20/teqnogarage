@@ -26,7 +26,7 @@
                     <span class="image-name">{{ $value->name }}</span>
 
                     <form
-                        action="/home/bannerImages/{{ $value->id }}"
+                        action="{{ route('bannerImages.destroy', $value->id) }}"
                         method="POST">
                         @csrf
                         @method('delete')

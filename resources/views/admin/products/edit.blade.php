@@ -152,6 +152,17 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="subcategory" class="col-sm-2 col-form-label">subcategory</label>
+                            <div class="col-sm-4">
+                                <select class="form-select" name="subcategory" id="subcategory">
+                                    @foreach($subcategories as $subcategory)
+                                        <option value="{{ $subcategory['id'] }}" @if($product->subcategories_id == $subcategory['id']) selected @endif>{{ $subcategory['subcategory'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="video_url" class="col-sm-2 col-form-label">video url</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="video_url" name="video_url" value="{{ $product->video_url }}">
@@ -168,6 +179,8 @@
                                 </select>
                             </div>
                         </div>
+
+
 
                         <div class="row mb-3">
 

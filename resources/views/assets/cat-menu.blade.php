@@ -2,13 +2,12 @@
 
 @foreach($categories as $category)
 
-    <li class="cat-menu-item" style="cursor: pointer;">
+    <li class="cat-menu-item fs-5 text-capitalize py-3" style="cursor: pointer;">
 
         
-        <span>{{ $category->category }}</span>
+        <a href="{{ route('index.products', app()->getLocale())."?categories[]=".$category->id }}">{{ $category->category }}</a>
            
-        
-
+    
     
     <ul class="cat-menu-sub d-none">
 
@@ -17,7 +16,7 @@
 
             @if($subcategory->categories_id == $category->id)
 
-                <li>
+                <li class="fs-6 text-capitalize">
                     <a href="{{ route('index.products', app()->getLocale())."?categories[]=".$category->id."&subcategories[]=".$subcategory->id }}">
                         {{ $subcategory->subcategory }}
                     </a>

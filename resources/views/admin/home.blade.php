@@ -62,7 +62,7 @@
                     </a>
                 </div>
     
-                <div class="col-auto my-3">
+                {{-- <div class="col-auto my-3">
                     <a href="{{ route('about.create') }}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> --}}
 
 
             </div>

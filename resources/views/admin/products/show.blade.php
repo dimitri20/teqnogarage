@@ -52,36 +52,42 @@
         <div class="container-main">
             <div class="shadow w-100 p-5">
                 <div class="row" >
-                    <div class="col-3">
-
-                        <div class="row" style="height: 620px;">
-
+                    <div class="col-lg-3 col-12">
+    
+                        <div class="row">
+    
                             <div class="col mb-4">
                                 <div class="product-view-container w-auto">
-                                    <div class="card border-1 pt-2">
-                                        <div id="product-1" class="carousel carousel-dark slide card-img-top p-3" data-bs-ride="carousel">
-                                            <div class="carousel-inner">
+                                    <div class="card border-1 pt-2 w-lg-100 w-75 m-auto h-auto">
+                                        <div id="product-1" class="carousel carousel-dark slide card-img-top p-3 h-100" data-bs-ride="carousel">
+                                            <div class="carousel-inner h-100">
                                                 <div class="carousel-item active">
-                                                    <img src="{{ asset("storage/product_images/".$images["image_1"]) }}" alt="" class="d-block">
+                                                    <img src="{{ asset("storage/product_images/".$product->images->image_1) }}" alt="" class="d-block">
                                                 </div>
-
+                                                
+                                                @if($product->images->image_2 != null)
                                                 <div class="carousel-item">
-                                                    <img src="{{ asset("storage/product_images/".$images["image_2"]) }}" alt="" class="d-block">
+                                                    <img src="{{ asset("storage/product_images/".$product->images->image_2) }}" alt="" class="d-block">
                                                 </div>
-
+                                                @endif
+        
+                                                @if($product->images->image_3 != null)
                                                 <div class="carousel-item">
-                                                    <img src="{{ asset("storage/product_images/".$images["image_3"]) }}" alt="" class="d-block">
+                                                    <img src="{{ asset("storage/product_images/".$product->images->image_3) }}" alt="" class="d-block">
                                                 </div>
-
+                                                @endif
+        
+                                                @if($product->images->image_4 != null)
                                                 <div class="carousel-item">
-                                                    <img src="{{ asset("storage/product_images/".$images["image_4"]) }}" alt="" class="d-block">
+                                                    <img src="{{ asset("storage/product_images/".$product->images->image_4) }}" alt="" class="d-block">
                                                 </div>
-
+                                                @endif
+    
                                                 <button class="carousel-control-prev" type="button" data-bs-target="#product-1" data-bs-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                     <span class="visually-hidden">Previous</span>
                                                 </button>
-
+    
                                                 <button class="carousel-control-next" type="button" data-bs-target="#product-1" data-bs-slide="next">
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="visually-hidden">Next</span>
@@ -89,26 +95,26 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="d-flex flex-row justify-content-between w-100 image-triple mt-3">
-
+                                    {{-- <div class="d-flex flex-row justify-content-between w-100 image-triple mt-3">
+    
                                         <div class="border p-1 image-triple-item border-selected">
                                             <img src="{{ asset("storage/product_images/".$images["image_2"]) }}" alt="" class="d-block w-100 h-100">
                                         </div>
-
+    
                                         <div class="border p-1 image-triple-item">
                                             <img src="{{ asset("storage/product_images/".$images["image_3"]) }}" alt="" class="d-block w-100 h-100">
                                         </div>
-
+    
                                         <div class="border p-1 image-triple-item">
                                             <img src="{{ asset("storage/product_images/".$images["image_4"]) }}" alt="" class="d-block w-100 h-100">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
-
+    
                         </div>
-
-                        <div class="row">
+    
+                        <div class="row mt-5">
                             <div class="col">
                                 <div class="w-100">
                                     <iframe width="100%" height="315" src="{{ $product->video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -116,8 +122,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col px-5">
+    
+                    <div class="col px-5 mt-lg-0 mt-5">
                         <div class="row">
                             <div class="col">
                                 <div class="text-start text-wrap fw-bold">
@@ -127,9 +133,9 @@
                                 </div>
                             </div>
                         </div>
-
+    
                         <div class="row align-items-center">
-                            <div class="col-2">
+                            <div class="col-lg-2 col-auto">
                                 <div class="fw-bolder fs-4">
                                     <span>{{ $product->price_from }}</span>
                                     -
@@ -137,16 +143,12 @@
                                     GEL
                                 </div>
                             </div>
-                            <div class="col">
-                                <a href="#">
-                                    <img src="{{ asset("storage/icons/add-to-cart.svg") }}" alt="" class="icon-add-to-cart">
-                                </a>
-                            </div>
+                            
                             <div class="col">
                                 <div class="fs-5">
-
+    
                                     <span class="d-flex flex-row align-items-center">
-                                        @if($product->available)
+                                        @if($product->available == 1)
                                             <i class="bi bi-check-lg me-1 text-success"></i>
                                             მარაგშია
                                         @else
@@ -157,7 +159,7 @@
                                 </div>
                             </div>
                         </div>
-
+    
                         <div class="row my-3">
                             <div class="col">
                                 <div>
@@ -167,7 +169,21 @@
                                 </div>
                             </div>
                         </div>
-
+    
+                        <div class="row my-5">
+                            <div class="col">
+                                <div class="text-start my-4">
+                                    <h5>
+                                        აღწერა:
+                                    </h5>
+                                </div>
+    
+                                <div class="text-start">
+                                    {{ $product->description_ka }}
+                                </div>
+                            </div>
+                        </div>
+    
                         <div class="row my-5">
                             <div class="col">
                                 <div class="row">
@@ -179,7 +195,8 @@
                                         </div>
                                     </div>
                                 </div>
-
+    
+                                @php $count = 0; @endphp
                                 @foreach($productDetails as $productKey => $detail)
                                     <div class="row">
                                         <div class="col">
@@ -191,42 +208,45 @@
                                                         </span>
                                                     </div>
                                                 </div>
-
+    
                                                 <div class="col">
                                                     @foreach($detail['values'] as $detailsKey => $details)
-                                                        <div class="d-flex flex-row align-items-center justify-content-start w-100 px-4 py-2">
-
+                                                        <div class="d-flex flex-row align-items-center justify-content-start w-100 px-4 py-2 @if($count%2 == 0) bg-light-gray @endif">
+    
                                                             <div class="w-50">
                                                                 <span>
                                                                     {{ $details['characteristic_attribute'] }}
                                                                 </span>
                                                             </div>
-
+    
                                                             <div class="w-50">
                                                                 <span>
                                                                     {{ $details['characteristic_value_en'] }}
                                                                 </span>
                                                             </div>
                                                         </div>
+                                                        @php
+                                                            $count++;
+                                                        @endphp
                                                     @endforeach
                                                 </div>
-
+    
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
-
-
+    
+    
                             </div>
                         </div>
                     </div>
                 </div>
-
+    
             </div>
-
+    
         </div>
     </div>
-
+    
 
 
 @endsection

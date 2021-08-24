@@ -89,13 +89,13 @@
         <script src="{{ asset('js/productsController.js') }}"></script>
     @endif
     
-    @if(request()->routeis(['categories.create', 'categories.index', 'categories']))
+    {{-- @if(request()->routeis(['categories.create', 'categories.index', 'categories']))
         <script src="{{ asset('js/categoriesController.js') }}"></script>
     @endif
 
     @if(request()->routeis(['bannerImages.create', 'bannerImages.index']))
         <script src="{{ asset('js/bannerController.js') }}"></script>
-    @endif
+    @endif --}}
 
 </body>
 </html>

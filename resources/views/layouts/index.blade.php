@@ -15,7 +15,14 @@
 <body id="body">
     
     <header>
+        @php
+    
+            use App\Models\Contact;
 
+            $data = Contact::all()[0];
+            
+
+        @endphp
         <div id="top-nav-container">
             <div class="container-main">
                 <div id="top-nav-inner-container">
@@ -23,42 +30,43 @@
                         <div class="col d-flex flex-row">
                             <div class="top-nav-contents-container d-flex flex-row">
                                 <div class="top-nav-content-item">
-                                    <a href="#">
+                                    <a href="{{ $data->facebook }}" target="_blank">
                                         <img src="{{ asset('storage/icons/facebook.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="#">
+                                    <a href="{{ $data->instagram }}" target="_blank">
                                         <img src="{{ asset('storage/icons/instagram.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="#">
+                                    <a href="mailto:{{ $data->gmail }}" target="_blank">
                                         <img src="{{ asset('storage/icons/gmail.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="#">
+                                    <a href="https://wa.me/{{$data->whatsapp}}/" target="_blank">
                                         <img src="{{ asset('storage/icons/whatsapp.svg') }}" alt="">
                                     </a>
                                 </div>
-                            </div>
-    
-                            <div class="top-nav-contents-container d-flex flex-row ms-auto">
+
                                 <div class="top-nav-content-item">
-                                    <a href="#">
+                                    <a href="tel:{{ $data->phone_number }}">
                                         <img src="{{ asset('storage/icons/telephone.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="#">
+                                    <a href="https://www.google.com/maps/search/?api=1&query={{ $data->location }}" target="_blank">
                                         <img src="{{ asset('storage/icons/google-maps.svg') }}" alt="">
                                     </a>
                                 </div>
+                            </div>
+    
+                            <div class="top-nav-contents-container d-flex flex-row ms-auto">
 
                                 <div class="top-nav-content-item">
                                     <div class="sl-nav">
