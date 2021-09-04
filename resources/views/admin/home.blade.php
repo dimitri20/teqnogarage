@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
     
                 <div class="col-auto my-3">
-                    <a href="{{ route('products.index') }}">
+                    <a href="{{ route('products.index') }}?categories[]=">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                               <h5 class="card-title text-decoration-underline">Products</h5>

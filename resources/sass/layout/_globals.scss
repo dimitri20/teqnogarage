@@ -4,6 +4,10 @@
 }
 
 .icon-add-to-cart {
+    width: 60px;
+}
+
+.icon-add-to-cart:hover {
     width: 70px;
 }
 
@@ -12,7 +16,7 @@
 }
 
 .cat-active {
-    color: $main-color-orange;
+    color: $main-color-orange!important;
 }
 
 .button-orange {

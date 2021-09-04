@@ -2,7 +2,6 @@
 
 
 @section('content')
-
     <div class="container-main">
         <div class="row">
             <div class="col-md-auto col-12">
@@ -15,7 +14,7 @@
 
                     <div class="row shadow">
 
-                        <form action="{{route('index.products', app()->getLocale())}}" id="filterForm" method="GET">
+                        <form id="filterForm">
     
                             <div class="col-12 py-3">
     
@@ -25,13 +24,13 @@
     
                                 <div class="d-flex flex-row price-controller align-content-between px-3">
                                     <label>
-                                        min: 
+                                        მაქს: 
                                         <input type="text" id="price_min" name="price[min]" class="form-control">
     
                                     </label>
     
                                     <label class="ms-4">
-                                        max:
+                                        მინ:
                                         <input type="text" id="price_max" name="price[max]" class="form-control">
                                     </label>
 
@@ -53,7 +52,7 @@
                                         <li>
                                             <label>
                                                 <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input me-1 product-item-checkbox">
-                                                {{ $category->category }}
+                                                {{ $category['category_'.app()->getLocale()] }}
                                             </label>
                                         </li>
                                     @endforeach
@@ -61,20 +60,22 @@
                                 </ul>
                             </div>
     
-                            <div class="col-12 py-3 subcategories">
+                            <div id="subcategories" class="col-12 py-3 subcategories">
                                 <div class="py-2">
                                     <h5 class="border-bottom pb-2 ps-4">ქვეკატეგორია</h5>
                                 </div>
-                                <ul>
+                                <ul id="subcategoriesContainer">
 
-                                        @foreach($subcategories as $subcategory)
+                                        {{-- @foreach($subcategories as $subcategory)
                                             <li>
                                                 <label>
                                                     <input type="checkbox" name="subcategories[]" value="{{$subcategory->id}}" class="form-check-input me-1 product-item-checkbox">
                                                     {{ $subcategory->subcategory }}
                                                 </label>
                                             </li>
-                                        @endforeach
+                                        @endforeach --}}
+
+
     
                                 </ul>
                             </div>
@@ -88,92 +89,97 @@
             <div class="col">
                 <div class="row py-5">
                     <div class="col">
-                        <h2 class="fw-bolder text-center">პროდუქტი</h2>
+                        <h2 id="productsTitle" class="fw-bolder text-center">პროდუქტი</h2>
                     </div>
                 </div>
 
                 <div class="row mb-5 ms-4">
                     <div class="col-auto">
                         <form action="{{route('index.products', app()->getLocale())}}" method="GET" id="sortByForm">
-                            <label for="sortBy">Sort By: </label>
+                            <label for="sortBy">სორტირება </label>
                             <select name="sortBy" id="sortBy" class="form-select form-select">
                                 <option value="default" selected>Default</option>
-                                <option value="name+">Name (A - Z)</option>
-                                <option value="name-">Name (Z - A)</option>
-                                <option value="price-">Price (High > Low)</option>
-                                <option value="price+">Price (Low > High)</option>
+                                <option value="name+">სახელი (A - Z)</option>
+                                <option value="name-">სახელი (Z - A)</option>
+                                <option value="price-">ფასი (კლებადობა)</option>
+                                <option value="price+">ფასი (ზრდადობა)</option>
                             </select>
                         </form>
                     </div>
                 </div>
 
-                <div class="row">
+                <div id="productsContainer" class="row">
+                    
+                    @if(sizeof($_GET) > 0)
+                        @foreach($products as $productIndex => $productValue)
+                            <div class="col mb-4">
+                                <div class="card product-container shadow border-0 pt-2 m-auto">
+                                    <div id="product-{{ $productValue->id }}" class="carousel carousel-dark slide card-img-top " data-interval="false">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_1) }}" alt="" class="d-block">
+                                            </div>
+                                            
+                                            @if($productValue->images->image_2 != null)
+                                            <div class="carousel-item">
+                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_2) }}" alt="" class="d-block">
+                                            </div>
+                                            @endif
 
-                    @foreach($products as $productIndex => $productValue)
-                        <div class="col mb-4">
-                            <div class="card product-container shadow border-0 pt-2 m-auto">
-                                <div id="product-{{ $productValue->id }}" class="carousel carousel-dark slide card-img-top " data-interval="false">
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <img src="{{ asset("storage/product_images/".$productValue->images->image_1) }}" alt="" class="d-block">
+                                            @if($productValue->images->image_3 != null)
+                                            <div class="carousel-item">
+                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_3) }}" alt="" class="d-block">
+                                            </div>
+                                            @endif
+
+                                            @if($productValue->images->image_4 != null)
+                                            <div class="carousel-item">
+                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_4) }}" alt="" class="d-block">
+                                            </div>
+                                            @endif
+
+                                            <button class="carousel-control-prev" type="button" data-bs-target="#product-{{ $productValue->id }}" data-bs-slide="prev">
+                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Previous</span>
+                                            </button>
+
+                                            <button class="carousel-control-next" type="button" data-bs-target="#product-{{ $productValue->id }}" data-bs-slide="next">
+                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                <span class="visually-hidden">Next</span>
+                                            </button>
                                         </div>
-                                        
-                                        @if($productValue->images->image_2 != null)
-                                        <div class="carousel-item">
-                                            <img src="{{ asset("storage/product_images/".$productValue->images->image_2) }}" alt="" class="d-block">
-                                        </div>
-                                        @endif
-
-                                        @if($productValue->images->image_3 != null)
-                                        <div class="carousel-item">
-                                            <img src="{{ asset("storage/product_images/".$productValue->images->image_3) }}" alt="" class="d-block">
-                                        </div>
-                                        @endif
-
-                                        @if($productValue->images->image_4 != null)
-                                        <div class="carousel-item">
-                                            <img src="{{ asset("storage/product_images/".$productValue->images->image_4) }}" alt="" class="d-block">
-                                        </div>
-                                        @endif
-
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#product-{{ $productValue->id }}" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-
-                                        <button class="carousel-control-next" type="button" data-bs-target="#product-{{ $productValue->id }}" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
                                     </div>
-                                </div>
 
-                                <div class="card-body text-center">
-                                    <h6 class="card-text">
-                                        <a href="{{ route('index.product', ['language' => app()->getLocale(), 'id' => $productValue->id]) }}">
-                                            {{ $productValue->name }}
-                                        </a>
-                                    </h6>
-                                    <div class="d-flex flex-row align-items-center justify-content-between px-2">
-                                        <div class="fw-bolder">
-                                            <span>{{ $productValue->price_from }}</span>
-                                            -
-                                            <span>{{ $productValue->price_to }}</span>
-                                            GEL
+                                    <div class="card-body text-center">
+                                        <h6 class="card-text">
+                                            <a href="{{ route('index.product', ['language' => app()->getLocale(), 'id' => $productValue->id]) }}">
+                                                {{ $productValue->name }}
+                                            </a>
+                                        </h6>
+                                        <div class="d-flex flex-row align-items-center justify-content-between px-2">
+                                            <div class="fw-bolder">
+                                                <span>{{ $productValue->price_from }}</span>
+                                                -
+                                                <span>{{ $productValue->price_to }}</span>
+                                                ლარი
+                                            </div>
+                                            
+                                            
+                                            <div class="btn add-to-cart-button" data-id="{{ $productValue->id }}">
+                                                <img src="{{asset('storage/icons/add-to-cart.svg')}}" class="icon-add-to-cart" alt="add to cart" data-id="{{ $productValue->id }}">
+                                            </div>
+                                            
                                         </div>
-
-                                        <a href="{{ route('cart.add', $productValue->id) }}">
-                                            <img src="{{ asset("storage/icons/add-to-cart.svg") }}" alt="" class="icon-add-to-cart">
-                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
 
+                    
                 </div>
             </div>
         </div>
     </div>
-    
+
 @endsection

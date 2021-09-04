@@ -16,6 +16,8 @@ class Products extends Model
     protected $fillable = [
         'name',
         'categories_id',
+        'subcategories_id',
+        'available',
         'price_from',
         'price_to',
         'video_url',
@@ -30,6 +32,6 @@ class Products extends Model
     }
 
     public function images(){
-        return $this->hasOne(Images::class, 'id');
+        return $this->hasOne(Images::class, 'products_id');
     }
 }

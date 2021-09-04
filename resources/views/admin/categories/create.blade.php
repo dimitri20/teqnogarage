@@ -211,6 +211,7 @@
                             
 
                             @if(sizeof($deletedSubcategories) > 0)
+                            
                                 <div class="text-center mt-5 mb-3">
                                     <h4>Subcategories To Change</h4>
                                 </div>
@@ -229,8 +230,10 @@
                                                     <span>{{ $subcategory->name }}</span>
                                                     <span class="fw-bolder"> new:</span>
                                                     <select name="categories_id" class="form-select w-25">
-                                                        @foreach ($subcategories as $c)
-                                                            <option value="{{ $c->id }}">{{ $c->subcategory }}</option>
+                                                        @foreach ($categoriesFormatted as $cf)
+                                                            @foreach ($cf['subcategories'] as $s)
+                                                                <option value="{{ $s['id'] }}">{{ $cf['name']['category'] }} &#124; {{ $s['subcategory'] }}</option>
+                                                            @endforeach
                                                         @endforeach
                                                     </select>
                                                     <button type="submit" class="btn btn-outline-primary">change</button>

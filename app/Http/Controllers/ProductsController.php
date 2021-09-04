@@ -9,6 +9,7 @@ use App\Models\ProductDetails;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\Subcategory;
+use DB;
 
 class ProductsController extends Controller
 {
@@ -103,12 +104,6 @@ class ProductsController extends Controller
                         // ->orderBy($orderBy[0], $orderBy[1])
                         // ->get();
         
-        
-                        
-        
-            
-
-        
         return view("admin.products.index")
             ->with('products', $products)
             ->with('images', Images::with('products')->get())
@@ -151,32 +146,33 @@ class ProductsController extends Controller
         ]);
 
         $images = [];
-        $product_category = Categories::where("id", $request->category)->first()["category"];
+        // $product_category = Categories::where("id", $request->category)->first()["category"];
 
         if ($request->image_1 != null) {
-            $images[0] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_1->extension();
-            $request->image_1->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[0]);
+            $images[0] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_1->extension();
+            $request->image_1->move(storage_path('app/public/product_images/'), $images[0]);
         }
         if ($request->image_2 != null) {
-            $images[1] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_2->extension();
-            $request->image_2->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[1]);
+            $images[1] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_2->extension();
+            $request->image_2->move(storage_path('app/public/product_images/'), $images[1]);
         }
         if ($request->image_3 != null) {
-            $images[2] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_3->extension();
-            $request->image_3->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[2]);
+            $images[2] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_3->extension();
+            $request->image_3->move(storage_path('app/public/product_images/'), $images[2]);
         }
         if ($request->image_4 != null) {
-            $images[3] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_4->extension();
-            $request->image_4->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[3]);
+            $images[3] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_4->extension();
+            $request->image_4->move(storage_path('app/public/product_images/'), $images[3]);
         }
-
         
-
-
+        
+        // $imagesNextId = DB::select("SHOW TABLE STATUS LIKE 'images'");
+        // dd($request->input('subcategory'));
         Products::create([
             'name' => $request->input('name'),
             'categories_id' => $request->input('category'),
             'subcategories_id' => $request->input('subcategory'),
+            'images_id' => 0,
             'price_from' => $request->input('price_from'),
             'price_to' => $request->input('price_to'),
             'video_url' => $request->input('video_url'),
@@ -185,7 +181,7 @@ class ProductsController extends Controller
             'description_en' => $request->input('description_en'),
             'description_ru' => $request->input('description_ru'),
         ]);
-
+        
         Images::create([
             'products_id' => Products::latest('id')->first()['id'],
             'image_1' => empty($images[0]) ? null : $images[0],
@@ -304,33 +300,33 @@ class ProductsController extends Controller
     public function update(Request $request, int $id)
     {
         $images = [];
-        $product_category = Categories::where("id", $request->category)->first()["category"];
+        
         $imagesToUpdate = [];
         if ($request->image_1 != null) {
-            $images[0] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_1->extension();
+            $images[0] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_1->extension();
             $imagesToUpdate['image_1'] = $images[0];
-            $request->image_1->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[0]);
+            $request->image_1->move(storage_path('app/public/product_images/'), $images[0]);
         }
         if ($request->image_2 != null) {
-            $images[1] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_2->extension();
+            $images[1] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_2->extension();
             $imagesToUpdate['image_2'] = $images[1];
-            $request->image_2->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[1]);
+            $request->image_2->move(storage_path('app/public/product_images/'), $images[1]);
         }
         if ($request->image_3 != null) {
-            $images[2] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_3->extension();
+            $images[2] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_3->extension();
             $imagesToUpdate['image_3'] = $images[2];
-            $request->image_3->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[2]);
+            $request->image_3->move(storage_path('app/public/product_images/'), $images[2]);
         }
         if ($request->image_4 != null) {
-            $images[3] = $product_category.'/'.$request->name.'/'.uniqid().'_'.$request->name.'.'.$request->image_4->extension();
+            $images[3] = uniqid().'_'.str_replace($request->name, ' ', '_').'.'.$request->image_4->extension();
             $imagesToUpdate['image_4'] = $images[3];
-            $request->image_4->move(storage_path('app/public/product_images/'.$product_category."/".$request->name), $images[3]);
+            $request->image_4->move(storage_path('app/public/product_images/'), $images[3]);
         }
 
         Products::where("id", $id)->update([
             'name' => $request->input('name'),
             'categories_id' => $request->input('category'),
-            'subcategories_id' => (int)$request->input('subcategory'),
+            'subcategories_id' => $request->input('subcategory'),
             'price_from' => $request->input('price_from'),
             'price_to' => $request->input('price_to'),
             'video_url' => $request->input('video_url'),
@@ -392,9 +388,25 @@ class ProductsController extends Controller
         $productDetails = ProductDetails::where('products_id', $id);
         $productImages = Images::where('products_id', $id);
         $product_item = Products::where('id', $id)->first();
-        $product_category = Categories::where("id", $product_item['categories_id'])->first()["category"];
+        // $product_category = Categories::where("id", $product_item['categories_id'])->first()["category"];
 
-        $this->rmdir_recursive(storage_path('app/public/product_images/'.$product_category.'/'.$product_item['name']));
+        
+        if($productImages->first()['image_1'] != null){
+            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_1']));
+        }
+        if($productImages->first()['image_2'] != null){
+            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_2']));
+        }
+        if($productImages->first()['image_3'] != null){
+            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_3']));
+        }
+        if($productImages->first()['image_4'] != null){
+            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_4']));
+        }
+
+        // if(file_exists(storage_path('app/public/product_images/'.$product_item['name']))){
+        //     $this->rmdir_recursive(storage_path('app/public/product_images/'.$product_item['name']));
+        // }
 
         $product->delete();
         $productDetails->delete();

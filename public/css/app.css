@@ -12494,6 +12494,15 @@ textarea.form-control-lg {
   position: relative;
 }
 
+#loaderMain {
+  z-index: 999999999999999;
+}
+#loaderMain img {
+  width: 350px;
+  top: calc(50% - 170px);
+  left: calc(50% - 170px);
+}
+
 .container-main {
   width: 95%;
   margin: 0 auto;
@@ -12671,6 +12680,7 @@ body {
 .active-page,
 .active-page > a {
   color: #ff7f50 !important;
+  font-weight: 600;
 }
 
 #main-banner-container {
@@ -12722,6 +12732,10 @@ body {
 }
 
 .icon-add-to-cart {
+  width: 60px;
+}
+
+.icon-add-to-cart:hover {
   width: 70px;
 }
 
@@ -12730,7 +12744,7 @@ body {
 }
 
 .cat-active {
-  color: #ff7f50;
+  color: #ff7f50 !important;
 }
 
 .button-orange {
@@ -12793,6 +12807,15 @@ body {
 
 .price-controller input {
   width: 80px;
+}
+
+#filterForm li label {
+  text-transform: capitalize;
+  font-size: 18px;
+}
+
+#filterForm li label:hover {
+  color: #ff7f50;
 }
 
 .product-view-container {
@@ -12887,8 +12910,8 @@ body {
 .cart-container .cart-body .cart-image-container img {
   width: 50px;
   height: 60px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .cart-container .cart-body .cart-products-container {
   height: 330px;

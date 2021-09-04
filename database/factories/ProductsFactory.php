@@ -12,7 +12,7 @@ class ProductsFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Products::class;
 
     /**
      * Define the model's default state.

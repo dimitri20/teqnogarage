@@ -1,5 +1,10 @@
 $(document).ready(() => {
 
+    $('#category').change(e => {
+        updateSubcategoriesSelect(e.target)
+    })
+    updateSubcategoriesSelect('#category')
+
     updateCategoriesOnPanel()
     updateAttributesOnPanel()
 
@@ -62,6 +67,21 @@ submit_form.submit(() => {
     hidden.val(getCharacteristicsJson())
     submit_form.append(hidden)
 });
+
+function updateSubcategoriesSelect(element) {
+    $.ajax({
+        url: '/api/getSubcategoriesJson',
+        method: 'GET',
+        data: { 'categories[]': $(element).val() }
+    }).done(data => {
+        $('#subcategory').empty()
+        data.forEach(item => {
+            $('#subcategory').append(`
+                <option value="${item['id']}">${item['subcategory']}</option>
+            `)
+        })
+    })
+}
 
 
 //add Category on button click --> event

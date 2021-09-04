@@ -27,6 +27,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
+        // dd($this->getCategories());
         return view('admin.categories.create')
             ->with('categories', Categories::all())
             ->with('subcategories', Subcategory::all())
@@ -70,35 +71,6 @@ class CategoriesController extends Controller
 
         
         return redirect()->back();
-        // // dd($request->input());
-        // $categories_old = Categories::where('id', '>', 0);
-        // $subcategories_old = Subcategory::where('id', '>', 0);
-        // $categories_old->delete();
-        // $subcategories_old->delete();
-        
-        // $categoriesWithSubCategories = json_decode($request->categoriesJsonData, true);
-
-        // // dd($categoriesWithSubCategories);
-        // foreach($categoriesWithSubCategories as $categoriesIndex => $categoriesValue){
-        //     Categories::create([
-        //         'category' => $categoriesValue['name'],
-        //         'category_en' => $categoriesValue['lang']['en'],
-        //         'category_ka' => $categoriesValue['lang']['ka'],
-        //         'category_ru' => $categoriesValue['lang']['ru'],
-        //     ]);
-
-        //     foreach($categoriesValue['subcategories'] as $subcategoriesIndex => $subCategoriesValue){
-        //         Subcategory::create([
-        //             'categories_id' => Categories::latest('id')->first()['id'],
-        //             'subcategory' => $subCategoriesValue['name'],
-        //             'subcategory_en' => $subCategoriesValue['lang']['en'],
-        //             'subcategory_ka' => $subCategoriesValue['lang']['ka'],
-        //             'subcategory_ru' => $subCategoriesValue['lang']['ru'],
-        //         ]);
-        //     }
-        // }
-        
-        // return redirect()->back();
     }
 
     /**
@@ -156,6 +128,8 @@ class CategoriesController extends Controller
             ];
 
             $data->delete();
+            $subcategories = Subcategory::where('categories_id', $id);
+            $subcategories->delete();
 
             DeletedCategoriesAndSubcategories::create($deleted);
         }

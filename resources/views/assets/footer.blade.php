@@ -44,7 +44,7 @@
 
     <!-- Copyright -->
     <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        All rights reseved
+        ყველა უფლება დაცულია
     </div>
     <!-- Copyright -->
 </footer>

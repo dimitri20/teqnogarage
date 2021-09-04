@@ -95,13 +95,14 @@
                                 <span>{{ $product->price_from }}</span>
                                 -
                                 <span>{{ $product->price_to }}</span>
-                                GEL
+                                ლარი
                             </div>
                         </div>
                         <div class="col">
-                            <a href="{{ route('cart.add', $product->id) }}">
-                                <img src="{{ asset("storage/icons/add-to-cart.svg") }}" alt="add-to-cart" class="icon-add-to-cart">
-                            </a>
+                            
+                            <div class="btn add-to-cart-button" data-id="{{ $product->id }}">
+                                <img src="{{asset('storage/icons/add-to-cart.svg')}}" class="icon-add-to-cart" alt="add to cart" data-id="{{ $product->id }}">
+                            </div>
                         </div>
                         <div class="col">
                             <div class="fs-5">
@@ -138,7 +139,7 @@
                             </div>
 
                             <div class="text-start">
-                                {{ $product->description_ka }}
+                                {{ $product['description_'.app()->getLocale()] }}
                             </div>
                         </div>
                     </div>
@@ -154,7 +155,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             @php $count = 0; @endphp
                             @foreach($productDetails as $productKey => $detail)
                                 <div class="row">
@@ -163,7 +164,8 @@
                                             <div class="col-4">
                                                 <div class="fs-6 fw-bolder py-2">
                                                     <span>
-                                                        {{ $detail['category'] }}
+                                                       
+                                                        {{ $detail['category_'.app()->getLocale()] }}
                                                     </span>
                                                 </div>
                                             </div>
@@ -174,13 +176,13 @@
 
                                                         <div class="w-50">
                                                             <span>
-                                                                {{ $details['characteristic_attribute'] }}
+                                                                {{ $details['characteristic_attribute_'.app()->getLocale()] }}
                                                             </span>
                                                         </div>
 
                                                         <div class="w-50">
                                                             <span>
-                                                                {{ $details['characteristic_value_en'] }}
+                                                                {{ $details['characteristic_value_'.app()->getLocale()] }}
                                                             </span>
                                                         </div>
                                                     </div>

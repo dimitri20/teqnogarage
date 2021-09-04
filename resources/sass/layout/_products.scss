@@ -31,3 +31,12 @@
         width: 80px;
     }
 }
+
+#filterForm li label {
+    text-transform: capitalize;
+    font-size: 18px;
+}
+
+#filterForm li label:hover {
+    color: $main-color-orange;
+}

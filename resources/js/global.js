@@ -1,4 +1,15 @@
+import FormFilter from './modules/FormFiltering.js';
+import Cart from './modules/Cart.js';
+import Utils from './modules/Utils.js';
+import Cookies from 'js-cookie';
+
+
 $(document).ready(() => {
+
+    // setTimeout(() => {
+    //     $('#body').removeClass('overflow-hidden');
+    //     $('#loaderMain').hide();
+    // }, 200)
 
     $('.cat-menu-item span').click((e) => {
         $(e.target).toggleClass('cat-active')
@@ -13,91 +24,40 @@ $(document).ready(() => {
 
     })
 
+    if (
+        document.location.pathname === '/' + Utils.getLocale() + '/products' ||
+        document.location.pathname === '/admin/home/products') {
 
-    queries = decodeQuerys($(location).attr('search'))
+        let formFilter = new FormFilter();
+        formFilter.onPageLoadWithRequest();
+        formFilter.setCategoriesListener();
+        formFilter.setSortingListener();
 
-    queries.forEach(element => {
-        let key = Object.keys(element)[0]
-        $("#filterForm input[type = 'checkbox'][name = '" + key + "'][value = '" + element[key] + "']").prop("checked", true)
-        if (key == 'sortBy') {
-            $('#sortBy').val(element[key])
+    }
+
+    if (
+        document.location.pathname === '/' + Utils.getLocale() + '/products' ||
+        document.location.pathname.split('/')[2] === 'product'
+    ) {
+        Cart.setAddToCartListener()
+    }
+
+    Cart.update();
+
+
+    $(document).click(e => {
+
+        if (!$('#cart-body').hasClass('d-none') &&
+            !Utils.isElement("#cart-body", e.target) &&
+            !Utils.isElement("#cart", e.target) &&
+            !Utils.isElement(".remove-from-cart", e.target)) {
+            $('#cart-body').addClass('d-none')
         }
-        if (key == 'price[min]') {
-            $('#price_min').val(element[key])
-        }
-        if (key == 'price[max]') {
-            $('#price_max').val(element[key])
-        }
+
+
     })
 
-    $("#filterForm input[type = 'checkbox']").each((index, element) => {
-        $(element).change((e) => {
-            $("#filterForm").submit()
-        })
-    })
 
-    $("#sortBy").change(() => {
-        $('#filterForm input:text').each((index, element) => {
-            $(element).clone().attr('type', 'hidden').appendTo("#sortByForm")
-        })
 
-        $("#filterForm input:checkbox:checked").each((index, element) => {
-            $(element).clone().attr('type', 'hidden').appendTo("#sortByForm")
-        })
-
-        $('#sortByForm').submit()
-    })
 
 })
-
-
-function decodeQuerys(url) {
-    url = decodeURIComponent(url)
-    let query = []
-    temp = url.replace("?", "").split("&")
-    temp.forEach(element => {
-        let attrValPair = element.split("=")
-        let attrValPairDict = {}
-        attrValPairDict[attrValPair[0]] = attrValPair[1]
-        query.push(attrValPairDict)
-    });
-    return query
-}
-
-// class QueryBuilder {
-
-//     query = []
-//     url = ""
-
-//     constructor(url = "?filter[category]=1&filter[category]=2&filter[category]=4&filter[category]=10") {
-//         this.url = decodeURIComponent(url)
-//     }
-
-//     queryToDict() {
-//         let url = this.url
-//         temp = url.replace("?", "").split("&")
-//         temp.forEach(element => {
-//             let attrValPair = element.split("=")
-//             this.query.push({
-//                 attrValPair[0]: attrValPair[1]
-//             })
-//         });
-//         return this.query
-//     }
-// }
-
-
-
-// function filter(obj) {
-//     query = $(location).attr('search')
-//     query = decodeURIComponent(query)
-//         //"?filter[category]=1?filter[category]=2?filter[category]=4?filter[category]=10"
-
-//     if (query != "" || query != null) {
-
-//     }
-
-
-//     decodeURI(url)
-//     return $.param(obj)
-// }

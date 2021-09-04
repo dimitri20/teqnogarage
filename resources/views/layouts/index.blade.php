@@ -10,17 +10,28 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     
-    <title>Document</title>
+    <title>TechnoGarage - {{ Helper::getTitle() }}</title>
 </head>
 <body id="body">
+
+    {{-- <div id="loaderMain" class="position-absolute vw-100 vh-100 bg-white">
+        <img src="{{ asset('images/loader.gif') }}" alt="loader" class="position-absolute">
+    </div> --}}
+
+    <div id="dialog">
+        
+    </div>
     
     <header>
         @php
     
             use App\Models\Contact;
 
-            $data = Contact::all()[0];
+            $data = Contact::all();
             
+            if(isset($data[0])){
+                $data = $data[0];
+            }
 
         @endphp
         <div id="top-nav-container">
@@ -30,37 +41,37 @@
                         <div class="col d-flex flex-row">
                             <div class="top-nav-contents-container d-flex flex-row">
                                 <div class="top-nav-content-item">
-                                    <a href="{{ $data->facebook }}" target="_blank">
+                                    <a href="{{ isset($data->facebook) ? $data->facebook : '' }}" target="_blank">
                                         <img src="{{ asset('storage/icons/facebook.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="{{ $data->instagram }}" target="_blank">
+                                    <a href="{{ isset($data->instagram) ? $data->instagram : '' }}" target="_blank">
                                         <img src="{{ asset('storage/icons/instagram.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="mailto:{{ $data->gmail }}" target="_blank">
+                                    <a href="mailto:{{ isset($data->gmail) ? $data->gmail : '' }}" target="_blank">
                                         <img src="{{ asset('storage/icons/gmail.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="https://wa.me/{{$data->whatsapp}}/" target="_blank">
+                                    <a href="https://wa.me/{{ isset($data->whatsapp) ? $data->whatsapp : '' }}/" target="_blank">
                                         <img src="{{ asset('storage/icons/whatsapp.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="tel:{{ $data->phone_number }}">
+                                    <a href="tel:{{ isset($data->phone_number) ? $data->phone_number : '' }}">
                                         <img src="{{ asset('storage/icons/telephone.svg') }}" alt="">
                                     </a>
                                 </div>
 
                                 <div class="top-nav-content-item">
-                                    <a href="https://www.google.com/maps/search/?api=1&query={{ $data->location }}" target="_blank">
+                                    <a href="https://www.google.com/maps/place/?q=place_id:{{ isset($data->location) ? $data->location : '' }}" target="_blank">
                                         <img src="{{ asset('storage/icons/google-maps.svg') }}" alt="">
                                     </a>
                                 </div>
@@ -73,13 +84,46 @@
                                         <ul>
                                           <li>
 
-                                            <i class="sl-flag flag-ka"><div id="georgian"></div></i> <span class="active">KA</span>
-                                            <div class="triangle"></div>
+                                            @switch(app()->getLocale())
+                                                @case('ka')
+                                                    {{ Helper::renderLocaleLinkHtml('ka'); }}
+                                                    <div class="triangle"></div>
+                                                    <ul>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('en'); }}</li>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('ru'); }}</li>
+                                                    </ul>
+                                                @break
+                                                
+                                                @case('en')
+                                                    {{ Helper::renderLocaleLinkHtml('en'); }}
+                                                    <div class="triangle"></div>
+                                                    <ul>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('ka'); }}</li>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('ru'); }}</li>
+                                                    </ul>
+                                                        
+                                                @break
+
+                                                @case('ru')
+                                                    {{ Helper::renderLocaleLinkHtml('ru'); }}
+                                                    <div class="triangle"></div>
+                                                    <ul>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('ka'); }}</li>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('en'); }}</li>
+                                                    </ul>
+                                                        
+                                                @break
                                             
-                                            <ul>
-                                              <li><i class="sl-flag flag-en"><div id="english"></div></i> <span class="active">EN</span></li>
-                                              <li><i class="sl-flag flag-ru"><div id="russian"></div></i> <span>RU</span></li>
-                                            </ul>
+                                                @default
+                                                    {{ Helper::renderLocaleLinkHtml('ka'); }}
+                                                    <div class="triangle"></div>
+                                                    <ul>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('en'); }}</li>
+                                                        <li>{{ Helper::renderLocaleLinkHtml('ru'); }}</li>
+                                                    </ul>
+                                                @break
+                                            @endswitch
+                                            
 
                                           </li>
                                         </ul>
@@ -202,9 +246,8 @@
     @include('assets.footer')
 
     {{-- <script src="{{asset("js/app.js")}}"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
     <script src="{{ asset("js/app.js") }}"></script>
+    
 </body>
 
 </html>
