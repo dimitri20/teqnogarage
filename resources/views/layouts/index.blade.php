@@ -182,9 +182,9 @@
                                     <div class="row my-3">
                                         <div class="col">
                                             <ul class="d-flex flex-row justify-content-center gap-3">
-                                                <i class="sl-flag flag-ka"><div id="georgian-1"></div></i> <span>KA</span>
-                                                <li><i class="sl-flag flag-en"><div id="english-1"></div></i> <span>EN</span></li>
-                                                <li><i class="sl-flag flag-ru"><div id="russian-1"></div></i> <span>RU</span></li>
+                                                <li><a href="{{ Helper::getLocaleLink('ka') }}"><i class="sl-flag flag-ka"><div id="georgian-1"></div></i> <span>KA</span></a></li>
+                                                <li><a href="{{ Helper::getLocaleLink('en') }}"><i class="sl-flag flag-en"><div id="english-1"></div></i> <span>EN</span></a></li>
+                                                <li><a href="{{ Helper::getLocaleLink('ru') }}"><i class="sl-flag flag-ru"><div id="russian-1"></div></i> <span>RU</span></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -246,6 +246,7 @@
     @include('assets.footer')
 
     {{-- <script src="{{asset("js/app.js")}}"></script> --}}
+    
     <script src="{{ asset("js/app.js") }}"></script>
     
 </body>

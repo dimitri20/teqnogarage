@@ -18,13 +18,17 @@ export default class Render {
                     <div id="product-${item['id']}" class="carousel carousel-dark slide card-img-top " data-interval="false">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="/storage/product_images/${item['image_1']}" alt="" class="d-block">
+                                <a href="/${Utils.getLocale()}/product/${item['id']}">
+                                    <img src="/storage/product_images/${item['image_1']}" alt="" class="d-block">
+                                </a>
                             </div>
             `
             if (item['image_2'] != null) {
                 product += `
                             <div class="carousel-item">
-                                <img src="/storage/product_images/${item['image_2']}" alt="" class="d-block">
+                                <a href="/${Utils.getLocale()}/product/${item['id']}">
+                                    <img src="/storage/product_images/${item['image_2']}" alt="" class="d-block">
+                                </a>
                             </div>
                 `
             }
@@ -32,7 +36,9 @@ export default class Render {
             if (item['image_3'] != null) {
                 product += `
                             <div class="carousel-item">
-                                <img src="/storage/product_images/${item['image_3']}" alt="" class="d-block">
+                                <a href="/${Utils.getLocale()}/product/${item['id']}">
+                                    <img src="/storage/product_images/${item['image_3']}" alt="" class="d-block">
+                                </a>
                             </div>
                 `
             }
@@ -40,7 +46,9 @@ export default class Render {
             if (item['image_4'] != null) {
                 product += `
                             <div class="carousel-item">
-                                <img src="/storage/product_images/${item['image_4']}" alt="" class="d-block">
+                                <a href="/${Utils.getLocale()}/product/${item['id']}">
+                                    <img src="/storage/product_images/${item['image_4']}" alt="" class="d-block">
+                                </a>
                             </div>
                 `
             }

@@ -102,7 +102,6 @@ export default class FormFilter {
         this.subcategoriesInputList.unbind('change');
         this.subcategoriesInputList.on('change', (e) => {
             e.preventDefault()
-            $('#sortBy').val('default');
             this.subcategoriesInputList.each((index, element) => {
                 if (element != e.target) {
                     $(element).prop('checked', false)

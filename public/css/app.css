@@ -12781,6 +12781,7 @@ body {
 .product-container {
   width: 290px;
   height: 325px;
+  border-radius: 25px;
 }
 .product-container .carousel-item img {
   width: 170px;

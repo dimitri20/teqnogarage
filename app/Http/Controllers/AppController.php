@@ -204,7 +204,7 @@ class AppController extends Controller
             $id = $product['products_id'];
             $products[$index]['id'] = $id;
         }
-    
+        // dd($products);
 
         return response()->json($products);
     }

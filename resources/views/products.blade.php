@@ -16,50 +16,6 @@
 
                         <form id="filterForm">
     
-                            <div class="col-12 py-3">
-    
-                                <div class="py-2">
-                                    <h5 class="border-bottom pb-2 ps-4">ფასი</h5>
-                                </div>
-    
-                                <div class="d-flex flex-row price-controller align-content-between px-3">
-                                    <label>
-                                        მაქს: 
-                                        <input type="text" id="price_min" name="price[min]" class="form-control">
-    
-                                    </label>
-    
-                                    <label class="ms-4">
-                                        მინ:
-                                        <input type="text" id="price_max" name="price[max]" class="form-control">
-                                    </label>
-
-                                    <button type="submit" id="submitPrice" class="btn button-orange ms-3 mt-4">
-                                        <i class="bi bi-arrow-right"></i>
-                                    </button>
-                                </div>
-
-                                
-                            </div>
-    
-                            <div class="col-12 py-3 categories">
-                                <div class="py-2">
-                                    <h5 class="border-bottom pb-2 ps-4">კატეგორია</h5>
-                                </div>
-                                <ul>
-    
-                                    @foreach($categories as $category)
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input me-1 product-item-checkbox">
-                                                {{ $category['category_'.app()->getLocale()] }}
-                                            </label>
-                                        </li>
-                                    @endforeach
-    
-                                </ul>
-                            </div>
-    
                             <div id="subcategories" class="col-12 py-3 subcategories">
                                 <div class="py-2">
                                     <h5 class="border-bottom pb-2 ps-4">ქვეკატეგორია</h5>
@@ -79,6 +35,24 @@
     
                                 </ul>
                             </div>
+    
+                            <div class="col-12 py-3 categories">
+                                <div class="py-2">
+                                    <h5 class="border-bottom pb-2 ps-4">კატეგორია</h5>
+                                </div>
+                                <ul>
+    
+                                    @foreach($categories as $category)
+                                        <li>
+                                            <label>
+                                                <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input me-1 product-item-checkbox">
+                                                {{ $category['category_'.app()->getLocale()] }}
+                                            </label>
+                                        </li>
+                                    @endforeach
+    
+                                </ul>
+                            </div>
 
                         </form>
 
@@ -94,8 +68,28 @@
                 </div>
 
                 <div class="row mb-5 ms-4">
-                    <div class="col-auto">
-                        <form action="{{route('index.products', app()->getLocale())}}" method="GET" id="sortByForm">
+                    <div class="col-12 w-100 d-flex flex-row flex-wrap justify-content-between">
+                    
+                        <div class="d-flex flex-row price-controller align-items-center px-3">
+                            <span class="px-3">ფასი: </span>
+
+                            <label>
+                                მინ: 
+                                <input type="text" id="price_min" name="price[min]" class="form-control">
+    
+                            </label>
+    
+                            <label class="ms-4">
+                                მაქს:
+                                <input type="text" id="price_max" name="price[max]" class="form-control">
+                            </label>
+    
+                            <button type="submit" id="submitPrice" class="btn button-orange ms-3 mt-4">
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <form id="sortByForm">
                             <label for="sortBy">სორტირება </label>
                             <select name="sortBy" id="sortBy" class="form-select form-select">
                                 <option value="default" selected>Default</option>
@@ -117,24 +111,34 @@
                                     <div id="product-{{ $productValue->id }}" class="carousel carousel-dark slide card-img-top " data-interval="false">
                                         <div class="carousel-inner">
                                             <div class="carousel-item active">
-                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_1) }}" alt="" class="d-block">
+                                                <a href="{{ route('index.product', ['language' => app()->getLocale(), 'id' => $productValue->id]) }}">
+                                                    <img src="{{ asset("storage/product_images/".$productValue->images->image_1) }}" alt="" class="d-block">
+                                                </a>
                                             </div>
                                             
                                             @if($productValue->images->image_2 != null)
                                             <div class="carousel-item">
-                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_2) }}" alt="" class="d-block">
+                                                <a href="{{ route('index.product', ['language' => app()->getLocale(), 'id' => $productValue->id]) }}">
+                                                    <img src="{{ asset("storage/product_images/".$productValue->images->image_2) }}" alt="" class="d-block">
+                                                </a>
+                                                
                                             </div>
                                             @endif
 
                                             @if($productValue->images->image_3 != null)
                                             <div class="carousel-item">
-                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_3) }}" alt="" class="d-block">
+                                                <a href="{{ route('index.product', ['language' => app()->getLocale(), 'id' => $productValue->id]) }}">
+                                                    <img src="{{ asset("storage/product_images/".$productValue->images->image_3) }}" alt="" class="d-block">
+                                                </a>
+                                                
                                             </div>
                                             @endif
 
                                             @if($productValue->images->image_4 != null)
                                             <div class="carousel-item">
-                                                <img src="{{ asset("storage/product_images/".$productValue->images->image_4) }}" alt="" class="d-block">
+                                                <a href="{{ route('index.product', ['language' => app()->getLocale(), 'id' => $productValue->id]) }}">
+                                                    <img src="{{ asset("storage/product_images/".$productValue->images->image_4) }}" alt="" class="d-block">
+                                                </a>
                                             </div>
                                             @endif
 
@@ -176,7 +180,6 @@
                         @endforeach
                     @endif
 
-                    
                 </div>
             </div>
         </div>

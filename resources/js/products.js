@@ -1,6 +1,5 @@
 $(document).ready(() => {
 
-
     $('#collapse-cat-button').click(() => {
         $('#cat-menu-collapse').toggleClass("d-none")
     })

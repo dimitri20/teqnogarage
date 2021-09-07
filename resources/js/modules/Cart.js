@@ -1,7 +1,7 @@
-import Utils from './Utils.js';
 import Render from './Render.js';
 import Cookies from 'js-cookie';
-
+import 'jquery-ui/ui/effects/effect-shake.js';
+import Utils from './Utils.js';
 
 export default class Cart {
 
@@ -30,13 +30,14 @@ export default class Cart {
                 let total_price_from = 0;
                 let total_price_to = 0;
 
-                for (let i = 0; i < cart.length; i++) {
+                for (let i = 0; i < cart['cart_items'].length; i++) {
                     if (parseInt(cart['cart_items'][i]['id']) === parseInt(response['id'])) {
                         increment = [true, i];
                         break;
                     }
                 }
 
+                console.info(increment);
                 if (increment[0]) {
                     alert('this item is already in the cart');
                     // $('#dialog').dialog();
@@ -68,50 +69,53 @@ export default class Cart {
     static setRemoveFromCartListener() {
         $('.remove-from-cart').unbind('click')
         $('.remove-from-cart').click(e => {
+            $(e.target).closest(".cart-product").effect('shake')
+            setTimeout(() => {
+                let id = $(e.target).attr('data-id');
+                let cart;
+                let total_count = 0;
+                let total_price_from = 0;
+                let total_price_to = 0;
 
-            let id = $(e.target).attr('data-id');
-            let cart;
-            let total_count = 0;
-            let total_price_from = 0;
-            let total_price_to = 0;
-
-            if (Cookies.get('cart') === undefined) {
-                cart = {
-                    'total_count': 0,
-                    'total_price_from': 0,
-                    'total_price_to': 0,
-                    'cart_items': []
-                }
-            } else {
-                cart = JSON.parse(Cookies.get('cart'))
-            }
-            console.log(cart)
-            let formattedCart = [];
-
-            if (cart['cart_items'].length != 0) {
-                cart['cart_items'].forEach(item => {
-                    if (parseInt(item['id']) != parseInt(id)) {
-                        formattedCart.push(item)
+                if (Cookies.get('cart') === undefined) {
+                    cart = {
+                        'total_count': 0,
+                        'total_price_from': 0,
+                        'total_price_to': 0,
+                        'cart_items': []
                     }
-                })
-            }
+                } else {
+                    cart = JSON.parse(Cookies.get('cart'))
+                }
+                console.log(cart)
+                let formattedCart = [];
 
-            cart['cart_items'] = formattedCart;
+                if (cart['cart_items'].length != 0) {
+                    cart['cart_items'].forEach(item => {
+                        if (parseInt(item['id']) != parseInt(id)) {
+                            formattedCart.push(item)
+                        }
+                    })
+                }
 
-            if (cart['cart_items'].length != 0) {
-                cart['cart_items'].forEach(item => {
-                    total_count += 1;
-                    total_price_from += (parseFloat(item['price_from']) * parseInt(item['quantity']));
-                    total_price_to += (parseFloat(item['price_to']) * parseInt(item['quantity']));
-                })
-            }
+                cart['cart_items'] = formattedCart;
 
-            cart['total_count'] = total_count;
-            cart['total_price_from'] = total_price_from;
-            cart['total_price_to'] = total_price_to;
+                if (cart['cart_items'].length != 0) {
+                    cart['cart_items'].forEach(item => {
+                        total_count += 1;
+                        total_price_from += (parseFloat(item['price_from']) * parseInt(item['quantity']));
+                        total_price_to += (parseFloat(item['price_to']) * parseInt(item['quantity']));
+                    })
+                }
 
-            Cookies.set('cart', JSON.stringify(cart));
-            this.update();
+                cart['total_count'] = total_count;
+                cart['total_price_from'] = total_price_from;
+                cart['total_price_to'] = total_price_to;
+
+                Cookies.set('cart', JSON.stringify(cart));
+                this.update();
+            }, 200)
+
         })
     }
 
@@ -136,11 +140,18 @@ export default class Cart {
     }
 
     static animate() {
+        // $('.add-to-cart-button').click(e => {
+        //         $('#cart').effect("shake")
+        //     })
         $('.add-to-cart-button').on('click', (e) => {
             var cart = $('#cart');
-            var imgtodrag = $($(e.target).closest('.card-body').siblings('.carousel').find('img').get(0));
-            console.log("cart: " + cart);
-            console.log("imgtodrag: " + imgtodrag);
+            var imgtodrag = null;
+            if (document.location.pathname.split('/')[2] === "product") {
+                imgtodrag = $($('.carousel .carousel-item.active > img').get(0));
+            } else if (document.location.pathname === '/' + Utils.getLocale() + '/products') {
+                imgtodrag = $($(e.target).closest('.card-body').siblings('.carousel').find('.carousel-item.active').find('img').get(0));
+            }
+
             if (imgtodrag) {
                 var imgclone = imgtodrag.clone()
                     .offset({
@@ -172,7 +183,7 @@ export default class Cart {
                     'width': 0,
                     'height': 0
                 }, function() {
-                    $(e.target).detach()
+
                 });
             }
         });

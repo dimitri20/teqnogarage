@@ -1,10 +1,16 @@
 import FormFilter from './modules/FormFiltering.js';
 import Cart from './modules/Cart.js';
 import Utils from './modules/Utils.js';
-import Cookies from 'js-cookie';
+// require('@ckeditor/ckeditor5-build-classic');
 
 
 $(document).ready(() => {
+
+    // ClassicEditor
+    //     .create(document.querySelector('#editor'))
+    //     .catch(error => {
+    //         console.log(error);
+    //     })
 
     // setTimeout(() => {
     //     $('#body').removeClass('overflow-hidden');
@@ -49,11 +55,20 @@ $(document).ready(() => {
 
         if (!$('#cart-body').hasClass('d-none') &&
             !Utils.isElement("#cart-body", e.target) &&
-            !Utils.isElement("#cart", e.target) &&
-            !Utils.isElement(".remove-from-cart", e.target)) {
-            $('#cart-body').addClass('d-none')
-        }
+            !Utils.isElement("#cart", e.target)) {
 
+            if ($('.remove-from-cart').length > 0) {
+                $('.remove-from-cart').each((index, element) => {
+                    if (element != e.target || $(element).find('i')[0] != e.target) {
+                        $('#cart-body').addClass('d-none')
+                    }
+                })
+            } else {
+                $('#cart-body').addClass('d-none')
+            }
+
+
+        }
 
     })
 

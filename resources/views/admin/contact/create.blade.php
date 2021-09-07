@@ -55,6 +55,9 @@
                         <span class="input-group-text">about (ru)</span>
                         <textarea class="form-control" rows="20" name="about_ru" >@if(array_key_exists('about_ru', $info)){{$info['about_ru']}}@endif</textarea>
                     </div>
+
+
+
                     <button type="submit" class="btn btn-primary">submit</button>
 
                 </form>
