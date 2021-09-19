@@ -72,7 +72,7 @@
                     <div class="row mt-5">
                         <div class="col">
                             <div class="w-100">
-                                <iframe width="100%" height="315" src="{{ $product->video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                {!! $product->video_url !!}
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                                 <span>{{ $product->price_from }}</span>
                                 -
                                 <span>{{ $product->price_to }}</span>
-                                ლარი
+                                {{ __("ლარი") }}
                             </div>
                         </div>
                         <div class="col">
@@ -110,10 +110,10 @@
                                 <span class="d-flex flex-row align-items-center">
                                     @if($product->available == 1)
                                         <i class="bi bi-check-lg me-1 text-success"></i>
-                                        მარაგშია
+                                        {{ __("მარაგშია") }}
                                     @else
                                         <i class="bi bi-x-lg me-1 text-danger"></i>
-                                        არ არის მარაგში
+                                        {{ __("არ არის მარაგში") }}
                                     @endif
                                 </span>
                             </div>
@@ -124,7 +124,7 @@
                         <div class="col">
                             <div>
                                 <button class="btn button-orange rounded-pill p-2 px-4 fs-5">
-                                    განვადების გაფორმება
+                                    {{ __("განვადების გაფორმება") }}
                                 </button>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                         <div class="col">
                             <div class="text-start my-4">
                                 <h5>
-                                    აღწერა:
+                                    {{__("აღწერა")}}:
                                 </h5>
                             </div>
 
@@ -150,7 +150,7 @@
                                 <div class="col">
                                     <div class="text-start my-5">
                                         <h5>
-                                            მახასიათებლები:
+                                            {{__("მახასიათებლები")}}:
                                         </h5>
                                     </div>
                                 </div>

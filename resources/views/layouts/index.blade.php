@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    {{-- <link rel="stylesheet" href="{{ asset('css/reset.css') }}"> --}}
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
+    <link rel="icon" href="/images/title-logo.png" sizes="32x32" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    
-    <title>TechnoGarage - {{ Helper::getTitle() }}</title>
+    <title>{{ Helper::getTitle() }}</title>
 </head>
-<body id="body">
+<body id="body" class="d-flex flex-column">
 
+    
     {{-- <div id="loaderMain" class="position-absolute vw-100 vh-100 bg-white">
         <img src="{{ asset('images/loader.gif') }}" alt="loader" class="position-absolute">
     </div> --}}
@@ -39,43 +37,7 @@
                 <div id="top-nav-inner-container">
                     <div class="row">
                         <div class="col d-flex flex-row">
-                            <div class="top-nav-contents-container d-flex flex-row">
-                                <div class="top-nav-content-item">
-                                    <a href="{{ isset($data->facebook) ? $data->facebook : '' }}" target="_blank">
-                                        <img src="{{ asset('storage/icons/facebook.svg') }}" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="top-nav-content-item">
-                                    <a href="{{ isset($data->instagram) ? $data->instagram : '' }}" target="_blank">
-                                        <img src="{{ asset('storage/icons/instagram.svg') }}" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="top-nav-content-item">
-                                    <a href="mailto:{{ isset($data->gmail) ? $data->gmail : '' }}" target="_blank">
-                                        <img src="{{ asset('storage/icons/gmail.svg') }}" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="top-nav-content-item">
-                                    <a href="https://wa.me/{{ isset($data->whatsapp) ? $data->whatsapp : '' }}/" target="_blank">
-                                        <img src="{{ asset('storage/icons/whatsapp.svg') }}" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="top-nav-content-item">
-                                    <a href="tel:{{ isset($data->phone_number) ? $data->phone_number : '' }}">
-                                        <img src="{{ asset('storage/icons/telephone.svg') }}" alt="">
-                                    </a>
-                                </div>
-
-                                <div class="top-nav-content-item">
-                                    <a href="https://www.google.com/maps/place/?q=place_id:{{ isset($data->location) ? $data->location : '' }}" target="_blank">
-                                        <img src="{{ asset('storage/icons/google-maps.svg') }}" alt="">
-                                    </a>
-                                </div>
-                            </div>
+                            @include("assets.contact-infos")
     
                             <div class="top-nav-contents-container d-flex flex-row ms-auto">
 
@@ -145,8 +107,8 @@
                         <div class="col-12 col-lg-auto p-4">
                             <div class="d-flex justify-content-center justify-content-lg-start">
                                 <div id="logo">
-                                    <a href="{{ asset('/') }}">
-                                        <img src="{{ asset('images/main-logo.png') }}" alt="">
+                                    <a href="{{ asset('/').app()->getLocale() }}">
+                                        <img src="{{ asset('images/TG.png') }}" width="300px" alt="teqnogarage logo">
                                     </a>
                                 </div>
                             </div>
@@ -160,7 +122,12 @@
                             <div id="cat-menu-collapse" class="d-none">
                                 <div class="cat-menu-full-width">
 
+                                    {{-- close button --}}
                                     <div class="row">
+                                        <div class="col">
+                                            @include("assets.language_switch_responsive")
+                                        </div>
+
                                         <div class="col">
                                             <button id="close-cat-menu" class="btn float-end fs-1">
                                                 <i class="bi bi-x-lg"></i>
@@ -168,10 +135,47 @@
                                         </div>
                                     </div>
 
-                                    <div class="row row-cols-1 justify-content-center text-center gap-3">
+                                    {{-- categories header --}}
+                                    {{-- <div class="row mt-5 mb-2">
+                                        <div class="col">
+                                            <div class="text-center">
+                                                <h3>{{ __("კატეგორიები") }}</h3>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+
+                                    {{-- cat menu items --}}
+                                    <div class="row justify-content-center mt-4">
+                                        <div class="col">
+
+                                            <nav>
+                                                <ul class="w-100 p-0 m-0 text-center">
+                                                    @include('assets.cat-menu')
+                                                </ul>
+                                            </nav>
+
+                                        </div>
+                                    </div>
+                                    
+
+                                    {{-- lang items
+                                    <div class="row my-3">
+                                        <div class="col">
+                                            <ul class="d-flex flex-row justify-content-center gap-3">
+                                                <li><a href="{{ Helper::getLocaleLink('ka') }}"><i class="sl-flag flag-ka"><div id="georgian-1"></div></i> <span>{{ __("ქარ") }}</span></a></li>
+                                                <li><a href="{{ Helper::getLocaleLink('en') }}"><i class="sl-flag flag-en"><div id="english-1"></div></i> <span>{{ __("ინგ") }}</span></a></li>
+                                                <li><a href="{{ Helper::getLocaleLink('ru') }}"><i class="sl-flag flag-ru"><div id="russian-1"></div></i> <span>{{ __("რუს") }}</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div> --}}
+
+                                    
+
+                                    {{-- main nav items --}}
+                                    <div class="row mt-5">
                                         <div class="col">
                                             <div class="main-nav-menu">
-                                                <ul class="d-flex flex-column p-0 m-0">
+                                                <ul class="d-flex flex-column justify-content-start text-start p-0 m-0">
                                                     @include('assets.menu-items')
                                                 </ul>
                                             </div>
@@ -179,36 +183,12 @@
                                     </div>
 
 
-                                    <div class="row my-3">
-                                        <div class="col">
-                                            <ul class="d-flex flex-row justify-content-center gap-3">
-                                                <li><a href="{{ Helper::getLocaleLink('ka') }}"><i class="sl-flag flag-ka"><div id="georgian-1"></div></i> <span>KA</span></a></li>
-                                                <li><a href="{{ Helper::getLocaleLink('en') }}"><i class="sl-flag flag-en"><div id="english-1"></div></i> <span>EN</span></a></li>
-                                                <li><a href="{{ Helper::getLocaleLink('ru') }}"><i class="sl-flag flag-ru"><div id="russian-1"></div></i> <span>RU</span></a></li>
-                                            </ul>
+                                    <div class="row mt-5">
+                                        <div class="col pt-5 mb-5">
+                                            @include("assets.contact-infos")
                                         </div>
                                     </div>
 
-
-                                    <div class="row mt-5 mb-2">
-                                        <div class="col">
-                                            <div class="text-center">
-                                                <h3>კატეგორიები</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row justify-content-center">
-                                        <div class="col">
-
-                                            <nav class="w-100">
-                                                
-                                                @include('assets.cat-menu')
-
-                                            </nav>
-
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -248,6 +228,35 @@
     {{-- <script src="{{asset("js/app.js")}}"></script> --}}
     
     <script src="{{ asset("js/app.js") }}"></script>
+
+    
+    <!-- Messenger Chat plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "100420225724669");
+      chatbox.setAttribute("attribution", "biz_inbox");
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v11.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
     
 </body>
 

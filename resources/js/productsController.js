@@ -1,10 +1,9 @@
 $(document).ready(() => {
 
     $('#category').change(e => {
-        updateSubcategoriesSelect(e.target)
-    })
-    updateSubcategoriesSelect('#category')
-
+            updateSubcategoriesSelect(e.target)
+        })
+        // updateSubcategoriesSelect(e.target, false)
     updateCategoriesOnPanel()
     updateAttributesOnPanel()
 
@@ -68,20 +67,25 @@ submit_form.submit(() => {
     submit_form.append(hidden)
 });
 
-function updateSubcategoriesSelect(element) {
+function updateSubcategoriesSelect(element, isFirst) {
     $.ajax({
         url: '/api/getSubcategoriesJson',
         method: 'GET',
         data: { 'categories[]': $(element).val() }
     }).done(data => {
         $('#subcategory').empty()
+
         data.forEach(item => {
             $('#subcategory').append(`
                 <option value="${item['id']}">${item['subcategory']}</option>
             `)
         })
+
     })
 }
+
+
+
 
 
 //add Category on button click --> event
@@ -146,6 +150,7 @@ removeCategories_button.click(() => {
         categoryId.pop()
 
 
+
         //remove attributes
         $('#AddToRemovableAttributesList div').each((index, element) => {
             attributeId = $(element).attr('id').split('_')
@@ -165,8 +170,7 @@ removeCategories_button.click(() => {
             }
         })
 
-
-        removeCategory(`#${categoryId}`)
+        removeCategory(`#${categoryId.join("_")}`)
         $(element).remove()
     })
 
@@ -178,7 +182,8 @@ removeAttributes_button.click(() => {
     attributesList.each((index, element) => {
         let attributeId = $(element).attr('id').split('_')
         attributeId.pop()
-        removeAttribute(`#${attributeId}`)
+        console.log(attributeId.join("_"))
+        removeAttribute(`#${attributeId.join("_")}`)
         console.log(element)
         $(element).remove()
     })
@@ -228,22 +233,23 @@ function addCategory(nameInEn, nameInKa, nameInRu) {
 
     $('#mainCategoryContainer').append(categoryHtml(nameInEn, nameInKa, nameInRu))
     $('#addToRemovableCategoriesList').append(`
-        <div id="${nameInEn}_removeCategory" class="btn btn-outline-info text-black-50 m-1"> <i class="bi bi-plus-lg"></i> ${nameInEn}  </div>
+        <div id="${nameInEn.replaceAll(" ", "_")}_removeCategory" class="btn btn-outline-info text-black-50 m-1"> <i class="bi bi-plus-lg"></i> ${nameInEn}  </div>
     `)
-    $('#selectCategory').append(new Option(nameInEn, nameInEn))
+    $('#selectCategory').append(new Option(nameInEn, nameInEn.replaceAll(" ", "_")))
     updateCategoriesToRemoveListListener()
 }
 
 function removeCategory(selector) {
+    console.log(selector)
     $(selector).remove()
-    $($(`#selectCategory option[value = ${selector.replace('#', '')}]`).get(0)).remove()
+    $($(`#selectCategory option[value = '${selector.replace('#', '')}']`).get(0)).remove()
 }
 
 //add attribute function
 function addAttribute(category_en, nameInEn, nameInKa, nameInRu) {
     $('#' + category_en + '_body').append(attributeHtml(nameInEn, nameInKa, nameInRu))
     $('#AddToRemovableAttributesList').append(`
-        <div id="${nameInEn}_removeAttribute" class="btn btn-outline-info text-black-50 m-1"> <i class="bi bi-plus-lg"></i> ${nameInEn}  </div>
+        <div id="${nameInEn.replaceAll(" ", "_")}_removeAttribute" class="btn btn-outline-info text-black-50 m-1"> <i class="bi bi-plus-lg"></i> ${nameInEn}  </div>
     `)
     updateAttributesToRemoveListListener()
 }
@@ -254,7 +260,7 @@ function removeAttribute(attributeSelector) {
 
 //return formatted category html
 function categoryHtml(en, ka, ru) {
-    let category = en.trim().replace(" ", "_")
+    let category = en.trim().replaceAll(" ", "_")
     let categoryHeaderId = category + "_header";
     let categoryBodyId = category + "_body";
 
@@ -279,7 +285,7 @@ function categoryHtml(en, ka, ru) {
 
 //return formatted attribute html
 function attributeHtml(en, ka, ru) {
-    let attribute = en.trim().replace(" ", "_");
+    let attribute = en.trim().replaceAll(" ", "_");
 
     return `
         <div id="${attribute}" class="row py-1 my-4 align-items-center">
@@ -329,7 +335,7 @@ function updateAttributesOnPanel() {
     let nameInEn;
     $('#mainCategoryContainer .accordion-item').each((categoryIndex, categoryElement) => {
         $(categoryElement).find('.accordion-body > div').each((attributeIndex, attributeElement) => {
-            nameInEn = $(attributeElement).attr('id')
+            nameInEn = $(attributeElement).attr('id').replaceAll(" ", "_")
             $('#AddToRemovableAttributesList').append(`
                 <div id="${nameInEn}_removeAttribute" class="btn btn-outline-info text-black-50 m-1"> <i class="bi bi-plus-lg"></i> ${nameInEn}  </div>
             `)

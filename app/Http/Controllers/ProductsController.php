@@ -282,12 +282,14 @@ class ProductsController extends Controller
             ]);
         }
 
+
         return view('admin.products.edit')
             ->with('product', Products::where('id', $id)->first())
             ->with('images', Images::where('products_id', $id)->first())
             ->with('categories', Categories::all())
             ->with('productDetails', $productDetailsFormatted)
-            ->with('subcategories', Subcategory::all());
+            ->with('subcategories', Subcategory::all())
+            ->with('subcategoriesFormatted', $this->getSubcategories(Products::where('id', $id)->first()['categories_id']));
     }
 
     /**
@@ -391,17 +393,31 @@ class ProductsController extends Controller
         // $product_category = Categories::where("id", $product_item['categories_id'])->first()["category"];
 
         
-        if($productImages->first()['image_1'] != null){
-            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_1']));
-        }
-        if($productImages->first()['image_2'] != null){
-            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_2']));
-        }
-        if($productImages->first()['image_3'] != null){
-            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_3']));
-        }
-        if($productImages->first()['image_4'] != null){
-            unlink(storage_path('app/public/product_images/'.$productImages->first()['image_4']));
+        try{
+            if($productImages->first()['image_1'] != null){
+                if(file_exists(storage_path('app/public/product_images/'.$productImages->first()['image_1']))){
+                    unlink(storage_path('app/public/product_images/'.$productImages->first()['image_1']));
+                }
+            }
+            if($productImages->first()['image_2'] != null){
+                if(file_exists(storage_path('app/public/product_images/'.$productImages->first()['image_2']))){
+                    unlink(storage_path('app/public/product_images/'.$productImages->first()['image_2']));
+                }
+            }
+            if($productImages->first()['image_3'] != null){
+                if(file_exists(storage_path('app/public/product_images/'.$productImages->first()['image_3']))){
+                    unlink(storage_path('app/public/product_images/'.$productImages->first()['image_3']));
+                }
+    
+                
+            }
+            if($productImages->first()['image_4'] != null){
+                if(file_exists(storage_path('app/public/product_images/'.$productImages->first()['image_4']))){
+                    unlink(storage_path('app/public/product_images/'.$productImages->first()['image_4']));
+                }
+            }
+        } catch (Exception $e){
+
         }
 
         // if(file_exists(storage_path('app/public/product_images/'.$product_item['name']))){
@@ -435,5 +451,11 @@ class ProductsController extends Controller
         }
 
         return $categoriesFormatted;
+    }
+
+    private function getSubcategories($categoriesId){
+        return Subcategory::query()
+                            ->where('categories_id', $categoriesId)
+                            ->get();
     }
 }

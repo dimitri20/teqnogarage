@@ -2,6 +2,18 @@
 
 @section('content')
 
+@php
+    
+            use App\Models\Contact;
+
+            $data = Contact::all();
+            
+            if(isset($data[0])){
+                $data = $data[0];
+            }
+
+        @endphp
+
 <div class="py-5">
     <div class="container">
         <div class="row">
@@ -16,8 +28,8 @@
                                 <img src="{{ asset("storage/icons/telephone.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
-                                    <span class="mb-1">ტელეფონი</span>
-                                    <a href="#" class="text-muted">{{ $info['phone_number'] }}</a>
+                                    <span class="mb-1">{{ __("ტელეფონი") }}</span>
+                                    <a href="tel:{{ isset($data->phone_number) ? $data->phone_number : '' }}" class="text-muted">{{ $info['phone_number'] }}</a>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +44,7 @@
         
                                 <div class="d-flex flex-column justify-content-start px-4">
                                     <span class="mb-1">facebook</span>
-                                    <a href="#" class="text-muted">{{ explode('/', $info['facebook'])[3] }}</a>
+                                    <a href="{{ isset($data->facebook) ? $data->facebook : '' }}" class="text-muted">{{ explode('/', $info['facebook'])[3] }}</a>
                                 </div>
                             </div>
                         </div>
@@ -46,8 +58,8 @@
                                 <img src="{{ asset("storage/icons/gmail.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
-                                    <span class="mb-1">ელ-ფოსტა</span>
-                                    <a href="#" class="text-muted">{{ $info['gmail'] }}</a>
+                                    <span class="mb-1">{{ __("ელ-ფოსტა") }}</span>
+                                    <a href="mailto:{{ isset($data->gmail) ? $data->gmail : '' }}" class="text-muted">{{ $info['gmail'] }}</a>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +73,8 @@
                                 <img src="{{ asset("storage/icons/instagram.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
-                                    <span class="mb-1">instagram</span>
-                                    <a href="#" class="text-muted">{{ explode('/', $info['instagram'])[3] }}</a>
+                                    <span class="mb-1">Instagram</span>
+                                    <a href="{{ isset($data->instagram) ? $data->instagram : '' }}" class="text-muted">{{ explode('/', $info['instagram'])[3] }}</a>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +88,8 @@
                                 <img src="{{ asset("storage/icons/whatsapp.svg") }}" alt="" class="icon-main">
         
                                 <div class="d-flex flex-column justify-content-start px-4">
-                                    <span class="mb-1">whatsapp</span>
-                                    <a href="#" class="text-muted">{{ $info['whatsapp'] }}</a>
+                                    <span class="mb-1">Whatsapp</span>
+                                    <a href="https://wa.me/{{ isset($data->whatsapp) ? $data->whatsapp : '' }}/" target="_blank" class="text-muted">{{ $info['whatsapp'] }}</a>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +123,7 @@
             <div class="row">
                 <div class="col">
                     <h1 class="h1 fw-bolder">
-                        უკუკავშირი
+                        {{ __("უკუკავშირი") }}
                     </h1>
                 </div>
             </div>
@@ -149,7 +161,7 @@
                         <div class="row py-2">
                             <div class="col">
                                 <button class="btn button-orange" type="submit" name="submit">
-                                    წერილის გაგზავნა
+                                    {{ __("წერილის გაგზავნა") }}
                                 </button>
                             </div>
                         </div>

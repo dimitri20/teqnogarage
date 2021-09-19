@@ -33,8 +33,20 @@
     }
 }
 
+@media screen and (min-width: 0px) and (max-width: 426px) {
+    .price-controller {
+        input {
+            width: 50px;
+        }
+    }
+    #sortBy {
+        width: 110px;
+    }
+}
+
 #filterForm li label {
     text-transform: capitalize;
+    font-weight: 600;
     font-size: 18px;
 }
 

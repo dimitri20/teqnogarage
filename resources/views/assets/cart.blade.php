@@ -13,14 +13,14 @@
 
             <div class="cart_content">
                 <div class="cart_text">
-                    <a href="#">კალათა</a>
+                    <a href="#">{{ __("კალათა") }}</a>
                 </div>
 
                 <div class="cart_price">
                     <span class="total-price-from"></span>
                     -
                     <span class="total-price-to"></span>
-                     ლარი
+                     {{ __("ლარი") }}
                 </div>
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="row p-3 px-4 align-items-center">
             <div class="col">
                 <h4>
-                    კალათა
+                    {{ __("კალათა") }}
                 </h4>
             </div>
 
@@ -57,14 +57,14 @@
         <div class="row px-4 align-items-center">
             <div class="col">
                 <button id="submit-cart" class="btn button-orange">
-                    განვადების გაფორმება
+                    {{ __("განვადების გაფორმება") }}
                 </button>
             </div>
 
             <div class="col">
                 <div class="ms-auto fw-bold fs-6 text-end">
                     <span class="total-price">
-                        სულ: <span class="total-price-from"></span> - <span class="total-price-to"></span> ლარი
+                        {{__("სულ")}}: <span class="total-price-from"></span> - <span class="total-price-to"></span> {{__("ლარი")}}
                     </span>
                 </div>
             </div>

@@ -1,5 +1,5 @@
-{{--<footer id="footer">--}}
-{{--    <div class="container-main">--}}
+{{-- <footer id="footer">
+   {{-- <div class="container-main">
 {{--        <div id="footer-inner-container">--}}
 {{--            <div class="row">--}}
 {{--                <div class="col">--}}
@@ -38,13 +38,27 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--    </div>--}}
-{{--</footer>--}}
+{{-- </footer>  --}}
 
-<footer id="footer" class="text-center text-white" style="background-color: #f1f1f1;">
+<footer id="footer" class="text-center text-white mt-auto pt-5">
 
-    <!-- Copyright -->
-    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        ყველა უფლება დაცულია
+    <div class="w-100 mt-5" style="background-color: #eae8e8;">
+
+        <div class="row justify-content-between align-items-center w-100">
+            <div class="col">
+
+            </div>
+            <div class="col">
+                <div class="text-center text-dark p-3" >
+                    &#169 {{ __("ყველა უფლება დაცულია") }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="ms-auto text-end text-dark">
+                    {{__("დეველოპერი")}} : <a href="mailto:dito.gulua03@gmail.com" class="fw-bolder">dito.gulua03@gmail.com</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- Copyright -->
+   
 </footer>

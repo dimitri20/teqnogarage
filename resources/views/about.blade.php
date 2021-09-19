@@ -8,7 +8,7 @@
 
                 <div class="row py-4 text-center">
                     <div class="col">
-                        <h1>ჩვენ შესახებ</h1>
+                        <h1>{{ __("ჩვენ შესახებ") }}</h1>
                     </div>
                 </div>
 

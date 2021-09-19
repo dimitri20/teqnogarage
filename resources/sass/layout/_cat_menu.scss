@@ -47,8 +47,23 @@
     font-size: $font-size-normal;
 }
 
+.cat-menu-item {
+    a {
+        font-weight: 700;
+        font-size: 21px;
+    }
+}
+
 .cat-menu-item:hover>a {
-    color: $main-color-orange!important;
+    color: #fff!important;
+}
+
+.cat-menu-container-hoverable:hover {
+    background: $main-color-orange;
+}
+
+.cat-menu-item:hover {
+    background-color: $main-color-orange;
 }
 
 .cat-menu-sub {
@@ -80,6 +95,7 @@
         left: 0;
         background: #fff;
         z-index: 999;
+        overflow-y: auto;
     }
 }
 

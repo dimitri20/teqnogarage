@@ -6,10 +6,14 @@
 .main-nav-menu-item {
     padding: 0 25px;
     font-size: $font-size-normal;
+    font-weight: 500;
+    a {
+        color: #718b66!important;
+    }
 }
 
-.main-nav-menu-item:hover {
-    opacity: .7;
+.main-nav-menu-item>a:hover {
+    color: $main-color-orange!important;
 }
 
 .active-page,

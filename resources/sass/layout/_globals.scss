@@ -31,3 +31,8 @@
 .bg-white {
     background: $main-color-white;
 }
+
+#body {
+    position: relative;
+    min-height: 100%;
+}

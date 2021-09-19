@@ -7,8 +7,6 @@ require('./bootstrap');
 // import 'bootstrap';
 
 
-require('./products');
-
 
 // require('./admin');
 

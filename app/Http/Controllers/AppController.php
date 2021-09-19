@@ -256,21 +256,17 @@ class AppController extends Controller
 
     public function contact(){
 
-        $contact = Contact::all();
-        $info = [];
-        
-        
-        if(isset($contact[0])){
-            foreach($contact[0]->getAttributes() as $contactIndex => $contactVal){
-                $info[$contactIndex] = $contactVal;
+        $data = Contact::all()->toArray();
+            
+            if(isset($data[0])){
+                $data = $data[0];
             }
-        }
-        // dd($info);
+        // dd($data);
         
         return view('contact')
             ->with('categories', Categories::all())
             ->with('subcategories', Subcategory::all())
-            ->with('info', $info);
+            ->with('info', $data);
     }
 
     public function about(){

@@ -67,6 +67,7 @@ export default class FormFilter {
         this.categoriesInputList.unbind('change');
         this.categoriesInputList.on('change', (e) => {
             e.preventDefault();
+            this.clearPrice();
             $('#sortBy').val('default');
             delete this.params['categories[]'];
             delete this.params['subcategories[]'];
@@ -102,6 +103,7 @@ export default class FormFilter {
         this.subcategoriesInputList.unbind('change');
         this.subcategoriesInputList.on('change', (e) => {
             e.preventDefault()
+            this.clearPrice()
             this.subcategoriesInputList.each((index, element) => {
                 if (element != e.target) {
                     $(element).prop('checked', false)
@@ -119,6 +121,17 @@ export default class FormFilter {
 
             this.getProductsAjax().then(data => {
                 Render.products(data)
+            })
+        })
+    }
+
+    setPriceListener() {
+        $("#submitPrice").click(e => {
+            this.params["price[min]"] = $("#price_min").val();
+            this.params["price[max]"] = $("#price_max").val();
+
+            this.getProductsAjax().then(response => {
+                Render.products(response)
             })
         })
     }
@@ -150,6 +163,13 @@ export default class FormFilter {
                 $('#filterForm input').prop('disabled', false)
             }
         })
+    }
+
+    clearPrice() {
+        this.params["price[min]"] = ''
+        this.params["price[max]"] = ''
+        $("#price_min").val('')
+        $("#price_max").val('')
     }
 
     removeColor(element) {

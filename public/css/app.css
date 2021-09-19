@@ -12342,6 +12342,11 @@ textarea.form-control-lg {
   display: inline;
 }
 
+.sl-nav span {
+  color: #738D66 !important;
+  font-weight: 600;
+}
+
 .sl-nav ul {
   margin: 0;
   padding: 0;
@@ -12465,8 +12470,8 @@ textarea.form-control-lg {
 
 .cart_text a {
   font-size: 18px;
-  font-weight: 400;
-  color: #000;
+  font-weight: 500;
+  color: #738D66 !important;
   transition: all 200ms ease;
 }
 
@@ -12494,6 +12499,31 @@ textarea.form-control-lg {
   position: relative;
 }
 
+@media screen and (min-width: 0) and (max-width: 576px) {
+  .cart_icon {
+    width: 24px !important;
+  }
+
+  .cart_count {
+    bottom: 6px;
+    right: -10px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .cart_text a {
+    font-size: 16px;
+  }
+
+  .cart_price {
+    font-size: 13px;
+  }
+
+  .cart_count span {
+    line-height: 17px;
+    font-size: 11px;
+  }
+}
 #loaderMain {
   z-index: 999999999999999;
 }
@@ -12623,8 +12653,21 @@ textarea.form-control-lg {
   font-size: 18px;
 }
 
+.cat-menu-item a {
+  font-weight: 700;
+  font-size: 21px;
+}
+
 .cat-menu-item:hover > a {
-  color: #ff7f50 !important;
+  color: #fff !important;
+}
+
+.cat-menu-container-hoverable:hover {
+  background: #ff7f50;
+}
+
+.cat-menu-item:hover {
+  background-color: #ff7f50;
 }
 
 .cat-menu-sub {
@@ -12657,6 +12700,7 @@ textarea.form-control-lg {
   left: 0;
   background: #fff;
   z-index: 999;
+  overflow-y: auto;
 }
 
 body {
@@ -12671,10 +12715,14 @@ body {
 .main-nav-menu-item {
   padding: 0 25px;
   font-size: 18px;
+  font-weight: 500;
+}
+.main-nav-menu-item a {
+  color: #718b66 !important;
 }
 
-.main-nav-menu-item:hover {
-  opacity: 0.7;
+.main-nav-menu-item > a:hover {
+  color: #ff7f50 !important;
 }
 
 .active-page,
@@ -12690,7 +12738,6 @@ body {
 }
 
 #footer {
-  background: #3B3B3B;
   margin-top: 200px;
 }
 
@@ -12760,6 +12807,11 @@ body {
   background: #FFF;
 }
 
+#body {
+  position: relative;
+  min-height: 100%;
+}
+
 .contact-item {
   width: 300px;
   height: 100px;
@@ -12810,8 +12862,18 @@ body {
   width: 80px;
 }
 
+@media screen and (min-width: 0px) and (max-width: 426px) {
+  .price-controller input {
+    width: 50px;
+  }
+
+  #sortBy {
+    width: 110px;
+  }
+}
 #filterForm li label {
   text-transform: capitalize;
+  font-weight: 600;
   font-size: 18px;
 }
 
@@ -12938,7 +13000,7 @@ body {
   }
 
   #banner-and-cat-container .carousel-inner img {
-    height: auto;
+    height: 200px;
   }
 
   #banner-and-cat-container {

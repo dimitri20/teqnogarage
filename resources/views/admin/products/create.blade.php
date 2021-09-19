@@ -158,7 +158,7 @@
                             <div class="col-sm-4">
                                 <select class="form-select" name="subcategory" id="subcategory">
                                     @foreach($subcategories as $subcategory)
-                                        <option value="{{ $subcategory['id'] }}">{{ $subcategory['subcategory'] }}</option>
+                                        <option value="{{ $subcategory['id'] }} ">{{ $subcategory['subcategory'] }}</option>
                                     @endforeach
                                 </select>
                             </div>

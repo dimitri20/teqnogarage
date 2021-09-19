@@ -117,7 +117,7 @@
                         <div class="row mt-5">
                             <div class="col">
                                 <div class="w-100">
-                                    <iframe width="100%" height="315" src="{{ $product->video_url }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    {!! $product->video_url !!}
                                 </div>
                             </div>
                         </div>
