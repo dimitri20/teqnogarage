@@ -9,7 +9,7 @@
                 <div class="filter-item m-auto">
                     <div class="row py-5">
                         <div class="col">
-                            <h2 class="fw-bolder text-start">ფილტრი</h2>
+                            <h2 class="fw-bolder text-start">{{__('ფილტრი')}}</h2>
                         </div>
                     </div>
 
@@ -20,7 +20,7 @@
                             <div class="col-12 py-3">
     
                                 <div class="py-2">
-                                    <h5 class="border-bottom pb-2 ps-4">ფასი</h5>
+                                    <h5 class="border-bottom pb-2 ps-4">{{__("ფასი")}}</h5>
                                 </div>
     
                                 <div class="d-flex flex-row price-controller align-content-between px-3">
@@ -45,7 +45,7 @@
     
                             <div class="col-12 py-3 categories">
                                 <div class="py-2">
-                                    <h5 class="border-bottom pb-2 ps-4">კატეგორია</h5>
+                                    <h5 class="border-bottom pb-2 ps-4">{{__('კატეგორია')}}</h5>
                                 </div>
                                 <ul>
     
@@ -63,7 +63,7 @@
     
                             <div class="col-12 py-3 subcategories">
                                 <div class="py-2">
-                                    <h5 class="border-bottom pb-2 ps-4">ქვეკატეგორია</h5>
+                                    <h5 class="border-bottom pb-2 ps-4">{{__("ქვეკატეგორია")}}</h5>
                                 </div>
                                 <ul>
 
@@ -88,7 +88,7 @@
             <div class="col">
                 <div class="row py-5">
                     <div class="col">
-                        <h2 class="fw-bolder text-center">პროდუქტი</h2>
+                        <h2 class="fw-bolder text-center">{{__('პროდუქტი')}}</h2>
                     </div>
                 </div>
 

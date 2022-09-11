@@ -149,7 +149,7 @@
                                     <div class="row mt-5 mb-2">
                                         <div class="col">
                                             <div class="text-center">
-                                                <h3>კატეგორიები</h3>
+                                                <h3>{{ __('კატეგორიები') }}</h3>
                                             </div>
                                         </div>
                                     </div>

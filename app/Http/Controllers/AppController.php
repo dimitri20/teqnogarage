@@ -11,9 +11,12 @@ use App\Models\Images;
 use App\Models\ProductDetails;
 use App\Models\Subcategory;
 use App\Models\Products;
+use App\Models\Feedback;
 
 class AppController extends Controller
 {
+
+    
 
 
     public function index(){
@@ -24,7 +27,6 @@ class AppController extends Controller
             ->with('subcategories', Subcategory::all())
             ->with('bannerImages', BannerImages::all());
     }
-
 
     public function products(Request $request){
 
@@ -111,8 +113,6 @@ class AppController extends Controller
             ->with('subcategories', Subcategory::all());
     }
 
-
-
     public function productReview(string $locale, int $id){
 
         $productDetails = ProductDetails::where("products_id", $id)->get();
@@ -144,7 +144,7 @@ class AppController extends Controller
     }
 
     public function contact(){
-
+        
         $contact = Contact::all();
         $info = [];
         
@@ -182,7 +182,12 @@ class AppController extends Controller
             ->with('info', $info);
     }
 
-
+    public function storeFeedback(Request $request){
+        
+        Feedback::create($request->input());
+        
+        return redirect(route('/'));
+    }
 
     private function getSubcategories(){
         $categories = Categories::all();

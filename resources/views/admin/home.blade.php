@@ -80,4 +80,36 @@
         </div>
     </div>
 
+
+
+    <div class="mt-5">
+
+        
+
+        <div class="container">
+
+            <h2 class="text-center">Feedback</h2>
+
+            
+                @foreach ($feedback as $item)
+
+                    <div class="card w-100 mt-4" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item["name"] }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $item["number"] }}</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ $item["mail"] }}</h6>
+                            <p class="card-text">{{ $item["text"] }}</p>
+
+
+                            <span>{{ $item["created_at"] }}</span>
+                        </div>
+                    </div>
+
+                @endforeach
+
+            </div>
+            
+
+    </div>
+
 @endsection

@@ -18,7 +18,7 @@
 
             <div class="cart_content">
                 <div class="cart_text">
-                    <a href="#">Cart</a>
+                    <a href="#">{{__('კალათა')}}</a>
                 </div>
                 
                 @php
@@ -132,7 +132,7 @@
         <div class="row px-4 align-items-center">
             <div class="col">
                 <button id="submit-cart" class="btn button-orange">
-                    განვადების გაფორმება
+                    {{__("განვადების გაფორმება")}}
                 </button>
             </div>
 

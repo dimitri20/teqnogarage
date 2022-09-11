@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\contactInfoController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\Localization;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,30 +44,35 @@ Route::group(['prefix' => 'admin'], function () {
         'only' => ['index', 'create', 'store']
     ]);
 
-    Route::resource('home/about', AboutConotroller::class, [
-        'only' => ['index', 'create', 'store']
-    ]);
+    // Route::resource('home/about', AboutConotroller::class, [
+    //     'only' => ['index', 'create', 'store']
+    // ]);
 
 });
 
 
-Route::redirect('/', '/ka');
+Route::redirect('/', '/ka')->name('/');
+
 
 
 Route::group(['prefix' => '{language}'], function(){
 
-    Route::get('/', [AppController::class, 'index'])->name('index');
-    Route::get('/contact', [AppController::class, 'contact'])->name('contact');
-    Route::get('/products', [AppController::class, 'products'])->name('index.products');
+    Route::get('/', [AppController::class, 'index'])->name('index')->middleware([Localization::class]);
+    Route::get('/contact', [AppController::class, 'contact'])->name('contact')->middleware([Localization::class]);
+    Route::get('/products', [AppController::class, 'products'])->name('index.products')->middleware([Localization::class]);
 
-    Route::get('/product/{id}', [AppController::class, 'productReview'])->name('index.product');
-    Route::get('/about', [AppController::class, 'about'])->name('about');
+    Route::get('/product/{id}', [AppController::class, 'productReview'])->name('index.product')->middleware([Localization::class]);
+    Route::get('/about', [AppController::class, 'about'])->name('about')->middleware([Localization::class]);
 
 });
+
+
 
 // Route::get('cart', [CartController::class, 'index'])->name('cart.index');
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::patch('/update-cart', [CartController::class, 'update'])->name('cart.update');
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('cart.remove');
+
+Route::post("/storeFeedback", [Appcontroller::class, 'storeFeedback']);
 
 
