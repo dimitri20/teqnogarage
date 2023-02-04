@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <link rel="stylesheet" href="{{ asset('css/reset.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('css/reset.css') }}"> 
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     
@@ -69,21 +69,193 @@
                             <div class="top-nav-contents-container d-flex flex-row ms-auto">
 
                                 <div class="top-nav-content-item">
-                                    <div class="sl-nav">
-                                        <ul>
-                                          <li>
+                                    
+                                    @if (app()->getLocale() == 'ka')
+                                        <div class="sl-nav">
+                                            <ul>
+                                            <li>
+                                                <a href="
+                                                    @php
+                                                    $url = url()->full();
+                                                    $url = explode('/', $url);
+                                                    $url[3] = 'ka';
+                                                    $url = implode('/', $url);
+                                                    echo $url;
+                                                    @endphp
+                                                ">
+                                                    <i class="sl-flag flag-ka">
+                                                        <div id="georgian"></div>
+                                                    </i> 
+                                                    <span class="active">KA</span></a>
 
-                                            <i class="sl-flag flag-ka"><div id="georgian"></div></i> <span class="active">KA</span>
+                                                <div class="triangle"></div>
+                                                
+                                                <ul>
+                                                <li>
+                                                    <a href="
+                                                        @php
+                                                        $url = url()->full();
+                                                        $url = explode('/', $url);
+                                                        $url[3] = 'en';
+                                                        $url = implode('/', $url);
+                                                        echo $url;
+                                                        @endphp
+                                                    ">
+                                                        <i class="sl-flag flag-en">
+                                                            <div id="english"></div>
+                                                        </i> 
+                                                        <span class="active">EN</span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="
+                                                        @php
+                                                        $url = url()->full();
+                                                        $url = explode('/', $url);
+                                                        $url[3] = 'ru';
+                                                        $url = implode('/', $url);
+                                                        echo $url;
+                                                        @endphp
+                                                    ">
+                                                        <i class="sl-flag flag-ru">
+                                                            <div id="russian"></div>
+                                                        </i> <span>RU</span>
+                                                    </a>
+                                                </li>
+
+                                                </ul>
+
+                                            </li>
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    @if (app()->getLocale() == 'en')
+                                        
+                                        <div class="sl-nav">
+                                        <ul>
+                                        <li>
+                                            <a href="
+                                                @php
+                                                $url = url()->full();
+                                                $url = explode('/', $url);
+                                                $url[3] = 'en';
+                                                $url = implode('/', $url);
+                                                echo $url;
+                                                @endphp
+                                            ">
+                                                <i class="sl-flag flag-en">
+                                                    <div id="english"></div>
+                                                </i> 
+                                                <span class="active">EN</span></a>
+
                                             <div class="triangle"></div>
                                             
                                             <ul>
-                                              <li><i class="sl-flag flag-en"><div id="english"></div></i> <span class="active">EN</span></li>
-                                              <li><i class="sl-flag flag-ru"><div id="russian"></div></i> <span>RU</span></li>
+                                            <li>
+                                                <a href="
+                                                    @php
+                                                    $url = url()->full();
+                                                    $url = explode('/', $url);
+                                                    $url[3] = 'ka';
+                                                    $url = implode('/', $url);
+                                                    echo $url;
+                                                    @endphp
+                                                ">
+                                                    <i class="sl-flag flag-ka">
+                                                        <div id="georgian"></div>
+                                                    </i> 
+                                                    <span class="active">KA</span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="
+                                                    @php
+                                                    $url = url()->full();
+                                                    $url = explode('/', $url);
+                                                    $url[3] = 'ru';
+                                                    $url = implode('/', $url);
+                                                    echo $url;
+                                                    @endphp
+                                                ">
+                                                    <i class="sl-flag flag-ru">
+                                                        <div id="russian"></div>
+                                                    </i> <span>RU</span>
+                                                </a>
+                                            </li>
+
                                             </ul>
 
-                                          </li>
+                                        </li>
                                         </ul>
-                                    </div>
+                                        </div>
+
+                                    @endif
+
+                                    @if (app()->getLocale() == 'ru')
+                                        
+                                        <div class="sl-nav">
+                                        <ul>
+                                        <li>
+                                            <a href="
+                                                @php
+                                                $url = url()->full();
+                                                $url = explode('/', $url);
+                                                $url[3] = 'ru';
+                                                $url = implode('/', $url);
+                                                echo $url;
+                                                @endphp
+                                            ">
+                                                <i class="sl-flag flag-en">
+                                                    <div id="russian"></div>
+                                                </i> 
+                                                <span class="active">RU</span></a>
+
+                                            <div class="triangle"></div>
+                                            
+                                            <ul>
+                                            <li>
+                                                <a href="
+                                                    @php
+                                                    $url = url()->full();
+                                                    $url = explode('/', $url);
+                                                    $url[3] = 'ka';
+                                                    $url = implode('/', $url);
+                                                    echo $url;
+                                                    @endphp
+                                                ">
+                                                    <i class="sl-flag flag-ka">
+                                                        <div id="georgian"></div>
+                                                    </i> 
+                                                    <span class="active">KA</span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="
+                                                    @php
+                                                    $url = url()->full();
+                                                    $url = explode('/', $url);
+                                                    $url[3] = 'en';
+                                                    $url = implode('/', $url);
+                                                    echo $url;
+                                                    @endphp
+                                                ">
+                                                    <i class="sl-flag flag-en">
+                                                        <div id="english"></div>
+                                                    </i> <span>EN</span>
+                                                </a>
+                                            </li>
+
+                                            </ul>
+
+                                        </li>
+                                        </ul>
+                                        </div>
+
+                                    @endif
                                 </div>
 
                             </div>
@@ -138,9 +310,58 @@
                                     <div class="row my-3">
                                         <div class="col">
                                             <ul class="d-flex flex-row justify-content-center gap-3">
-                                                <i class="sl-flag flag-ka"><div id="georgian-1"></div></i> <span>KA</span>
-                                                <li><i class="sl-flag flag-en"><div id="english-1"></div></i> <span>EN</span></li>
-                                                <li><i class="sl-flag flag-ru"><div id="russian-1"></div></i> <span>RU</span></li>
+                            
+                                                <li>
+                                                    <a href="
+                                                        @php
+                                                        $url = url()->full();
+                                                        $url = explode('/', $url);
+                                                        $url[3] = 'ka';
+                                                        $url = implode('/', $url);
+                                                        echo $url;
+                                                        @endphp
+                                                    ">
+                                                        <i class="sl-flag flag-ka">
+                                                            <div id="georgian-1"></div>
+                                                        </i> 
+                                                        <span>KA</span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="
+                                                        @php
+                                                        $url = url()->full();
+                                                        $url = explode('/', $url);
+                                                        $url[3] = 'en';
+                                                        $url = implode('/', $url);
+                                                        echo $url;
+                                                        @endphp
+                                                    ">
+                                                        <i class="sl-flag flag-en">
+                                                            <div id="english-1"></div>
+                                                        </i> 
+                                                        <span>EN</span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="
+                                                        @php
+                                                        $url = url()->full();
+                                                        $url = explode('/', $url);
+                                                        $url[3] = 'ru';
+                                                        $url = implode('/', $url);
+                                                        echo $url;
+                                                        @endphp
+                                                    ">
+                                                        <i class="sl-flag flag-ru">
+                                                            <div id="russian-1"></div>
+                                                        </i> 
+                                                        <span>RU</span>
+                                                    </a>
+                                                </li>
+
                                             </ul>
                                         </div>
                                     </div>
