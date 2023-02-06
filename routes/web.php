@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 
+Route::get('/getSubcategories', [Appcontroller::class, 'getSubcategoriesByCategory']);
 
 Route::redirect('/', '/ka')->name('/');
 
@@ -74,5 +75,6 @@ Route::patch('/update-cart', [CartController::class, 'update'])->name('cart.upda
 Route::delete('remove-from-cart', [CartController::class, 'remove'])->name('cart.remove');
 
 Route::post("/storeFeedback", [Appcontroller::class, 'storeFeedback']);
+
 
 

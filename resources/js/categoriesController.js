@@ -8,6 +8,7 @@ submit_form.click(() => {
     submit_form.append(hidden)
 });
 
+
 $(document).ready(() => {
 
     $('.addSubcategoryGroup').each((subCategoryIndex, subCategory) => {

@@ -357,3 +357,23 @@ function getCharacteristicsJson() {
 
     return JSON.stringify(data);
 }
+
+
+$('#category').on('change', function () {
+
+    $('#subcategory').empty()
+
+    let url = $(location).attr("origin")+'/getSubcategories?category='+$(this).val()
+
+    $.get(url, function(data, status) {
+        let dataObject = JSON.parse(data)
+        dataObject.forEach(element => {
+            $('#subcategory').append(`<option value="${element['id']}">${element['subcategory']}</option>`)
+        })
+    })
+
+})
+
+// $('#category').change(() => {
+//     console.log($(this).val())
+// })

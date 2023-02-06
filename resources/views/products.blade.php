@@ -50,9 +50,9 @@
                                 <ul>
     
                                     @foreach($categories as $category)
-                                        <li>
+                                        <li class="mt-2 mb-2">
                                             <label>
-                                                <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input me-1 product-item-checkbox">
+                                                <input type="checkbox" name="categories" value="{{ $category->id }}" class="form-check-input me-1 product-item-checkbox">
                                                 {{ $category->category }}
                                             </label>
                                         </li>

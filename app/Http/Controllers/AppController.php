@@ -63,11 +63,9 @@ class AppController extends Controller
         $products = new Products();
         //filter
 
+        
         if(array_key_exists('categories', $request->input())){
-            $categories_id = array_intersect($categories_id, $request->input()['categories']);
-            if(sizeof($categories_id) > 0){
-                $products = $products->whereIn('categories_id', $categories_id);
-            }
+            $products = $products->where('categories_id', $request->categories);
         }
 
         if(array_key_exists('subcategories', $request->input())){
@@ -103,14 +101,15 @@ class AppController extends Controller
                         // ->where('price_from', '<=', (int)$price_max)
                         // ->orderBy($orderBy[0], $orderBy[1])
                         // ->get();
-        
-        
+
+
+        //dd(Subcategory::where('categories_id', $request->categories)->get());
                         
         return view("products")
             ->with('products', $products)
             ->with('images', Images::with('products')->get())
             ->with('categories', Categories::all())
-            ->with('subcategories', Subcategory::all());
+            ->with('subcategories', Subcategory::where('categories_id', $request->categories)->get());
     }
 
     public function productReview(string $locale, int $id){
@@ -200,4 +199,8 @@ class AppController extends Controller
         return $categoriesFormatted;
     }
 
+    public function getSubcategoriesByCategory(Request $request){
+
+        return json_encode(Subcategory::where('categories_id', $request->input('category'))->get()->toArray());
+    }
 }

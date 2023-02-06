@@ -63,10 +63,7 @@ class ProductsController extends Controller
         //filter
 
         if(array_key_exists('categories', $request->input())){
-            $categories_id = array_intersect($categories_id, $request->input()['categories']);
-            if(sizeof($categories_id) > 0){
-                $products = $products->whereIn('categories_id', $categories_id);
-            }
+            $products = $products->where('categories_id', $request->categories);
         }
 
         if(array_key_exists('subcategories', $request->input())){
@@ -113,7 +110,7 @@ class ProductsController extends Controller
             ->with('products', $products)
             ->with('images', Images::with('products')->get())
             ->with('categories', Categories::all())
-            ->with('subcategories', Subcategory::all());
+            ->with('subcategories', Subcategory::where('categories_id', $request->categories)->get());
     }
 
     /**
@@ -394,8 +391,10 @@ class ProductsController extends Controller
         $product_item = Products::where('id', $id)->first();
         $product_category = Categories::where("id", $product_item['categories_id'])->first()["category"];
 
-        $this->rmdir_recursive(storage_path('app/public/product_images/'.$product_category.'/'.$product_item['name']));
-
+        if(file_exists(storage_path('app/public/product_images/'.$product_category.'/'.$product_item['name']))){
+            $this->rmdir_recursive(storage_path('app/public/product_images/'.$product_category.'/'.$product_item['name']));
+        }
+        
         $product->delete();
         $productDetails->delete();
         $productImages->delete();

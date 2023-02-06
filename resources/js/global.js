@@ -1,5 +1,7 @@
 $(document).ready(() => {
 
+
+
     $('.cat-menu-item span').click((e) => {
         $(e.target).toggleClass('cat-active')
         $($(e.target).closest('.cat-menu-item').find('.cat-menu-sub').get(0)).toggleClass('d-none')
@@ -15,26 +17,64 @@ $(document).ready(() => {
 
 
     queries = decodeQuerys($(location).attr('search'))
+    subcategoriesQuery = decodeSubCategories($(location).attr('search'))
+    
+    // if('categories[]' in queries){
+    //     let id = queries['categories[]']
 
-    queries.forEach(element => {
-        let key = Object.keys(element)[0]
-        $("#filterForm input[type = 'checkbox'][name = '" + key + "'][value = '" + element[key] + "']").prop("checked", true)
-        if (key == 'sortBy') {
-            $('#sortBy').val(element[key])
-        }
-        if (key == 'price[min]') {
-            $('#price_min').val(element[key])
-        }
-        if (key == 'price[max]') {
-            $('#price_max').val(element[key])
-        }
+    //     $("#filterForm input[type = 'checkbox']").each((index, element) => {
+    //         $(element).change((e) => {
+    //             $("#filterForm").submit()
+    //         })
+    //     })
+    // }
+
+    // console.log(queries)
+    // queries.forEach(element => {
+        
+    // })
+
+    // let key = Object.keys(element)
+    // console.log(key)
+    console.log(queries)
+    console.log(subcategoriesQuery)
+
+    $("#filterForm input[type = 'checkbox'][name = 'categories'][value = '" + queries['categories'] + "']").prop("checked", true)
+    subcategoriesQuery.forEach(element => {
+        $("#filterForm input[type = 'checkbox'][name = 'subcategories[]'][value = '" + element['subcategories[]'] + "']").prop("checked", true)
     })
+    
+    
+    if ('sortBy' in queries) {
+        $('#sortBy').val(queries['sortBy'])
+    }
+    if ('price[min]' in queries) {
+        $('#price_min').val(queries['price[min]'])
+    }
+    if ('price[max]' in queries) {
+        $('#price_max').val(queries['price[max]'])
+    }
 
-    $("#filterForm input[type = 'checkbox']").each((index, element) => {
+    $("#filterForm input[type = 'checkbox'][name = 'subcategories[]']").each((index, element) => {
         $(element).change((e) => {
             $("#filterForm").submit()
         })
     })
+
+    $("#filterForm input[type = 'checkbox'][name = 'categories']").each((index, element) => {
+        $(element).change((e) => {
+            $("#filterForm input[type = 'checkbox'][name = 'categories']").each((i, e) => {
+                $(e).prop("checked", false)
+            })
+            $("#filterForm input[type = 'checkbox'][name = 'subcategories[]']").each((i, e) => {
+                $(e).prop("checked", false)
+            })
+            $(element).prop("checked", true)
+            $("#filterForm").submit()
+        })
+    })
+
+    
 
     $("#sortBy").change(() => {
         $('#filterForm input:text').each((index, element) => {
@@ -54,12 +94,28 @@ $(document).ready(() => {
 function decodeQuerys(url) {
     url = decodeURIComponent(url)
     let query = []
+    let attrValPairDict = {}
+    temp = url.replace("?", "").split("&")
+    temp.forEach(element => {
+        let attrValPair = element.split("=")
+        attrValPairDict[attrValPair[0]] = attrValPair[1]
+        query.push(attrValPairDict)
+    });
+    return attrValPairDict
+}
+
+function decodeSubCategories(url){
+    url = decodeURIComponent(url)
+    let query = []
     temp = url.replace("?", "").split("&")
     temp.forEach(element => {
         let attrValPair = element.split("=")
         let attrValPairDict = {}
-        attrValPairDict[attrValPair[0]] = attrValPair[1]
-        query.push(attrValPairDict)
+        if(attrValPair[0] == 'subcategories[]'){
+            attrValPairDict[attrValPair[0]] = attrValPair[1]
+            query.push(attrValPairDict)
+        }
+        
     });
     return query
 }
